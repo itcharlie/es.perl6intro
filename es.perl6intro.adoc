@@ -24,7 +24,7 @@ Es conveniente que pruebes todos los ejemplos para entenderlos bien.
 .Licencia
 Este trabajo está bajo la licencia Creative Commons Attribution-ShareAlike 4.0 International License. Puedes encontrar una copia de esta licencia en
 
-* http://creativecommons.org/licenses/by-sa/4.0/.
+* http://creativecommons.org/licenses/by-sa/4.0/
 
 .Colaboración
 Puedes colaborar en este documento en:
@@ -75,7 +75,7 @@ Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
 . Consigue la imagen oficial de Docker `docker pull rakudo-star`
 . Y ejecuta un contenedor con la imagen `docker run -it rakudo-star`
 
-=== Running Perl 6 code
+=== Ejecutando código en Perl 6
 
 Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
 To do this, open a terminal, type `perl6` into the terminal window,
