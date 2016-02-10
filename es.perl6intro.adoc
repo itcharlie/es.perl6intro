@@ -107,16 +107,16 @@ En la comunidad también se utiliza http://www.vim.org/[Vim], https://www.gnu.or
 Las últimas versiones de Vim incorporan la visualización de la sintaxis de Perl 6, mientras que Emacs y Padre necesitan instalar paquetes adicionales.
 
 
-=== Hello World!
-We shall begin with The `hello world` ritual.
+=== ¡Hola Mundo!
+Comenzamos con El ritual `hola mundo`.
 
 [source,perl6]
-say 'hello world';
+say 'hola mundo';
 
-that can also be written as:
+que también puede escribirse como:
 
 [source,perl6]
-'hello world'.say;
+'hola mundo'.say;
 
 === Syntax overview
 Perl 6 is *free form*: You are free (most of the time) to use any amount of whitespace.
