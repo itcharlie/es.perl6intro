@@ -87,14 +87,15 @@ También puedes ejecutar una línea de código de forma "in-line" mediante el pa
 
 [TIP]
 --
-Rakudo Star bundles a line editor that helps you get the most out of the REPL.
+Rakudo Star incorpora un editor de líneas con más funcionalidades para REPL.
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
-Consider running the following command and you shall be all set:
+Si instalaste Rakudo en lugar de Rakudo Star es probable que no tengas estas funcionalidades (historial con flechas verticales, edición de la línea con flechas horizontales, autocompletar con TAB, etc.).
 
-* `panda install Linenoise` would work on Windows, Linux and OSX
+Para instalar estas funcionalidades utiliza estos comandos:
 
-* `panda install Readline` if you are on Linux and prefer the _Readline_ library
+* `panda install Linenoise` debe funcionar en Windows, Linux y OSX
+
+* `panda install Readline` si tienes Linux y prefieres la librería _Readline_
 --
 
 === Editors
