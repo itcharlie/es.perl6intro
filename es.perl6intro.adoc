@@ -79,7 +79,7 @@ Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
 
 Puedes ejecutar código Perl 6 mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce `perl6` y pulsa [Enter]. Aparecerá el prompt `>`. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o `exit` y pulsar [Enter] para salir al sistema.
 
-También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión `.pl6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.pl6` desde un terminal y pulsa [Enter]. La ejecución muestra el resultado de declaraciones como `say` cuya función es visualizar contenidos por la salida estándar. 
+También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión `.pl6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.pl6` desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como `say` para visualizar por la salida estándar contenidos de texto con un salto de línea al final . 
 
 REPL normalmente se utiliza para probar trozos pequeños de código, como una línea. En el caso de programas con más de una línea de código es recomendable guardarlos en un archivo y ejecutarlos como hemos visto.
 
@@ -119,37 +119,37 @@ que también puede escribirse como:
 'hola mundo'.say;
 
 === Syntax overview
-Perl 6 is *free form*: You are free (most of the time) to use any amount of whitespace.
+Perl 6 tiene *forma libre*: Eres libre (casi siempre) de utilizar cualquier cantidad de espacios en blanco.
 
-*Statements* are typically a logical line of code, they need to end with a semicolon:
-`say "Hello" if True;`
+*Sentencias* normalmente es una línea lógica de código y necesita finalizar con punto y coma:
+`say "Hola" if True;`
 
-*Expressions* are a special type of statement that returns a value:
-`1+2` will return `3`
+*Expresiones* son sentencias especiales que devuelven un valor:
+`1+2` devuelve `3`
 
-Expressions are made of *Terms* and *Operators*.
+Las expresiones están formadas por *Términos* y *Operadores*.
 
-*Terms* are:
+*Términos* son:
 
-* *Variables*: A value that can be manipulated and changed.
+* *Variables*: Un valor que puede manipularse y ser cambiado.
 
-* *Literals*: A constant value like a number or a string.
+* *Literales*: Un valor constante como un número o un texto.
 
-*Operators* are classified into types:
+*Operadores* se clasifican en tipos:
 
 |===
 
-| *Type* | *Explanation* | *Example*
+| *Tipo* | *Significado* | *Ejemplo*
 
-| Prefix | Before the term. | `++1`
+| Prefix | Antes del término | `++1`
 
-| Infix | Between terms | `1+2`
+| Infix | Entre términos | `1+2`
 
-| Postfix | After the term | `1++`
+| Postfix | Después del término | `1++`
 
-| Circumfix | Around the term | `(1)`
+| Circumfix | Al principio y al final del término | `(1)`
 
-| Postcircumfix | After one term, around another  | `Array[1]`
+| Postcircumfix | Después del término, al principio y al final de otro | `Array[1]`
 
 |===
 
