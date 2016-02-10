@@ -85,7 +85,7 @@ REPL normalmente se utiliza para probar trozos pequeños de código, como una l�
 
 También puedes ejecutar una línea de código de forma "in-line" mediante el parámetro -e de la siguiente forma: `perl6 -e 'línea de código Perl 6'` y pulsando [Enter].
 
-[CONSEJO]
+[TIP]
 --
 Rakudo Star incorpora un editor de líneas con más funcionalidades para REPL.
 
