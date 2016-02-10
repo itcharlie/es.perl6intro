@@ -89,25 +89,22 @@ También puedes ejecutar una línea de código de forma "in-line" mediante el pa
 --
 Rakudo Star incorpora un editor de líneas con más funcionalidades para REPL.
 
-Si instalaste Rakudo en lugar de Rakudo Star es probable que no tengas estas funcionalidades (historial con flechas verticales, edición de la línea con flechas horizontales, autocompletar con TAB, etc.).
-
-Para instalar estas funcionalidades utiliza estos comandos:
+Si instalaste Rakudo en lugar de Rakudo Star es probable que no tengas estas funcionalidades (historial con flechas verticales, edición de la línea con flechas horizontales, autocompletar con TAB, etc.). Para instalar estas funcionalidades utiliza estos comandos:
 
 * `panda install Linenoise` debe funcionar en Windows, Linux y OSX
 
 * `panda install Readline` si tienes Linux y prefieres la librería _Readline_
 --
 
-=== Editors
-Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
-a decent text editor that recognizes Perl 6 syntax.
+=== Editores
+Como casi siempre vamos a guardar nuestros programas de Perl 6 en archivos, necesitamos un editor de textos decente que reconozca la sintaxis de Perl 6.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
-https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
+Yo recomiendo y utilizo https://atom.io/[Atom]. Es un editor de textos moderno que reconoce y visualiza bien la sintaxis de Perl 6.
+https://atom.io/packages/language-perl6fe[Perl6-fe] es un paquete de Atom con una visualización alternativa de la sintaxis de Perl 6. Deriva del paquete original, tiene muchas correcciones y más funcionalidades.
 
-Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
+En la comunidad también se utiliza http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] o http://padre.perlide.org/[Padre].
 
-Recent versions of Vim ship with syntax highlighting out of the box. Emacs and Padre will require installation of additional packages.
+Las últimas versiones de Vim incorporan la visualización de la sintaxis de Perl 6, mientras que Emacs y Padre necesitan instalar paquetes adicionales.
 
 
 === Hello World!
