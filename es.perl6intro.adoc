@@ -77,26 +77,13 @@ Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
 
 === Ejecutando código en Perl 6
 
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
-To do this, open a terminal, type `perl6` into the terminal window,
-and hit [Enter].  This will cause a prompt of `>` to appear.
-Next, type a line of code and hit [Enter]. The REPL will print out
-the value of the line.  You may then type another line, or type `exit`
-and hit [Enter] to leave the REPL.
+Puedes ejecutar código Perl 6 mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce `perl6` y pulsa [Enter]. Aparecerá el prompt `>`. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o `exit` y pulsar [Enter] para salir al sistema.
 
-Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
-Run the file by typing `perl6 filename.pl6` into the terminal window
-and hitting [Enter]. Unlike the REPL, this will not automatically print
-the result of each line: the code must contain a statement like `say`
-to print output.
+También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión `.pl6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.pl6` desde un terminal y pulsa [Enter]. La ejecución muestra el resultado de declaraciones como `say` cuya función es visualizar contenidos por la salida estándar. 
 
-The REPL is mostly used for trying a specific piece of code, typically a
-single line. For programs with more than a single line it is recommended to
-store them in a file and then run them.
+REPL normalmente se utiliza para probar trozos pequeños de código, como una línea. En el caso de programas con más de una línea de código es recomendable guardarlos en un archivo y ejecutarlos como hemos visto.
 
-Single lines may also be tried non-interactively on the command-line by
-typing `perl6 -e 'your code here'` and hitting [Enter].
+También puedes ejecutar una línea de código de forma "in-line" mediante el parámetro -e de la siguiente forma: `perl6 -e 'línea de código Perl 6'` y pulsando [Enter].
 
 [TIP]
 --
