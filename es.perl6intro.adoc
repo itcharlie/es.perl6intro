@@ -119,23 +119,23 @@ que también puede escribirse como:
 'hola mundo'.say;
 
 === Sintaxis general
-Perl 6 tiene *forma libre*: Eres libre (casi siempre) de utilizar cualquier cantidad de espacios en blanco.
+Perl 6 tiene *forma libre*, esto es, eres libre (casi siempre) de utilizar cualquier cantidad de espacios en blanco.
 
-*Sentencias* normalmente es una línea lógica de código y necesita finalizar con punto y coma:
+*Una Sentencia* normalmente es una línea lógica de código que finaliza en punto y coma:
 `say "Hola" if True;`
 
-*Expresiones* son sentencias especiales que devuelven un valor:
+*Las Expresiones* son sentencias especiales que devuelven un valor:
 `1+2` devuelve `3`
 
 Las expresiones están formadas por *Términos* y *Operadores*.
 
-*Términos* son:
+*Los Términos* pueden ser:
 
 * *Variables*: Un valor que puede manipularse y ser cambiado.
 
 * *Literales*: Un valor constante como un número o un texto.
 
-*Operadores* se clasifican en tipos:
+*Los Operadores* se clasifican en estos tipos:
 
 |===
 
