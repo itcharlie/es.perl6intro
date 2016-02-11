@@ -161,17 +161,17 @@ Los identificadores son los nombres que se le dan a los términos cuando los def
 
 * Pueden contener dígitos excepto en el primer carácter.
 
-* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
+* Pueden contener guión medio o apóstrofe seguido de un carácter alfabético, no al final.
 
 |===
 
-| *Valid* | *Invalid*
+| *Válido* | *No válido*
 
 | `var1` | `1var`
 
-| `var-one` | `var-1`
+| `var-uno` | `var-1`
 
-| `var'one` | `var'1`
+| `var'uno` | `var'1`
 
 | `var1_` | `var1'`
 
@@ -179,36 +179,36 @@ Los identificadores son los nombres que se le dan a los términos cuando los def
 
 |===
 
-.Naming conventions:
-* Camel case: `variableNo1`
+.Convención de nombres:
+* Notación Camello: `variableNum1`
 
-* Kebab case: `variable-no1`
+* Notación Kebab: `variable-num1`
 
-* Snake case: `variable_no1`
+* Notación Serpiente: `variable_num1`
 
-You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
+Puedes nombrar tus identificadores como quieras, pero es recomendable utilizar una convención consistente.
 
-Using meaningful names will ease your (and others) programming life.
+Utiliza nombres significativos para hacerlo más fácil, a tí y a los demás.
 
-* `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
-* `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
+* `var1 = var2 * var3` es correcto pero no tiene un propósito evidente.
+* `mes-salario = dia-frecuencia * dias-trabajo` es una buena forma de nombrar las variables.
 
-==== Comments
-A comment is a piece of text ignored by the compiler and used as a note.
+==== Comentarios
+Un comentario es un texto, sirve como anotación y el compilador no lo tiene en cuenta.
 
-Comments are divided into 3 types:
+Hay 3 tipos de comentarios:
 
-* Single line:
+* De una línea:
 +
 [source,perl6]
 # This is a single line comment
 
-* Embedded:
+* Incrustado:
 +
 [source,perl6]
 say #`(This is an embedded comment) "Hello World."
 
-* Multi line:
+* Varias líneas:
 +
 [source,perl6]
 -----------------------------
