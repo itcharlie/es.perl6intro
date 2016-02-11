@@ -118,7 +118,7 @@ que también puede escribirse como:
 [source,perl6]
 'hola mundo'.say;
 
-=== Syntax overview
+=== Sintaxis general
 Perl 6 tiene *forma libre*: Eres libre (casi siempre) de utilizar cualquier cantidad de espacios en blanco.
 
 *Sentencias* normalmente es una línea lógica de código y necesita finalizar con punto y coma:
