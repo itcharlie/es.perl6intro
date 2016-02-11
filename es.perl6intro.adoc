@@ -153,13 +153,13 @@ Las expresiones están formadas por *Términos* y *Operadores*.
 
 |===
 
-==== Identifiers
-Identifiers are the names given to terms when you define them.
+==== Identificadores
+Los identificadores son los nombres que se le dan a los términos cuando los defines.
 
-.Rules:
-* They must start with an alphabetic character or an underscore.
+.Reglas:
+* Deben comenzar con un carácter alfabético o un guión bajo.
 
-* They can contain digits (except the first character).
+* Pueden contener dígitos excepto en el primer carácter.
 
 * They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
 
