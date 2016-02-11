@@ -212,11 +212,11 @@ say #`(Esto es un comentario incrustado) "Hola Mundo."
 +
 [source,perl6]
 -----------------------------
-=begin comment
+=begin comentario
 Esto es un comentario de varias líneas.
 Comentario 1
 Comentario 2
-=end comment
+=end comentario
 -----------------------------
 
 ==== Quotes
