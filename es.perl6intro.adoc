@@ -201,21 +201,21 @@ Hay 3 tipos de comentarios:
 * De una línea:
 +
 [source,perl6]
-# This is a single line comment
+# Esto es un comentario de una línea
 
 * Incrustado:
 +
 [source,perl6]
-say #`(This is an embedded comment) "Hello World."
+say #`(Esto es un comentario incrustado) "Hola Mundo."
 
-* Varias líneas:
+* De varias líneas:
 +
 [source,perl6]
 -----------------------------
 =begin comment
-This is a multi line comment.
-Comment 1
-Comment 2
+Esto es un comentario de varias líneas.
+Comentario 1
+Comentario 2
 =end comment
 -----------------------------
 
