@@ -238,8 +238,8 @@ say 'Hola $nombre';   # Hola $nombre
 say "Hola $nombre";   # Hola Juan Dios
 -----------------------------------
 
-== Operators
-The below table lists the most commonly used operators.
+== Operadores
+La siguiente tabla muestra los operadores más utilizados.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
