@@ -233,9 +233,9 @@ Utiliza siempre doble comillas:
 say 'Hola Mundo';   # Hola Mundo
 say "Hola Mundo";   # Hola Mundo
 say "Ven pa'ca cordera";    # Ven pa'ca cordera
-my $nombre = 'Juan Dios';
+my $nombre = 'Juan De Dios';
 say 'Hola $nombre';   # Hola $nombre
-say "Hola $nombre";   # Hola Juan Dios
+say "Hola $nombre";   # Hola Juan De Dios
 -----------------------------------
 
 == Operadores
