@@ -230,12 +230,12 @@ Utiliza siempre doble comillas:
 
 [source,perl6]
 -----------------------------------
-say 'Hello World';   # Hello World
-say "Hello World";   # Hello World
-say "Don't";         # Don't
-my $name = 'John Doe';
-say 'Hello $name';   # Hello $name
-say "Hello $name";   # Hello John Doe
+say 'Hola Mundo';   # Hola Mundo
+say "Hola Mundo";   # Hola Mundo
+say "Ven pa'ca cordera";    # Ven pa'ca cordera
+my $nombre = 'Juan Dios';
+say 'Hola $nombre';   # Hola $nombre
+say "Hola $nombre";   # Hola Juan Dios
 -----------------------------------
 
 == Operators
