@@ -141,15 +141,15 @@ Las expresiones están formadas por *Términos* y *Operadores*.
 
 | *Tipo* | *Significado* | *Ejemplo*
 
-| Prefix | Antes del término | `++1`
+| Prefijo | Antes del término | `++1`
 
-| Infix | Entre términos | `1+2`
+| Infijo | Entre términos | `1+2`
 
-| Postfix | Después del término | `1++`
+| Sufijo | Después del término | `1++`
 
-| Circumfix | Al principio y al final del término | `(1)`
+| Circumfijo | Al principio y al final del término | `(1)`
 
-| Postcircumfix | Después del término, al principio y al final de otro | `Array[1]`
+| Precircumfijo | Después del término, al principio y al final de otro | `Array[1]`
 
 |===
 
@@ -245,27 +245,27 @@ La siguiente tabla muestra los operadores más utilizados.
 
 | Operador | Tipo | Descripción | Ejemplo | Resultado
 
-| + | Infix | Addition | 1 + 2 | 3
+| + | Infijo | Suma | 1 + 2 | 3
 
-| - | Infix | Subtraction | 3 - 1 | 2
+| - | Infijo | Resta | 3 - 1 | 2
 
-| * | Infix | Multiplication | 3 * 2 | 6
+| * | Infijo | Multiplicación | 3 * 2 | 6
 
-| ** | Infix | Power | 3 ** 2 | 9
+| ** | Infijo | Potencia | 3 ** 2 | 9
 
-| / | Infix | Division | 3 / 2 | 1.5
+| / | Infijo | División | 3 / 2 | 1.5
 
-| div | Infix | Integer Division (rounds down) | 3 div 2 | 1
+| div | Infijo | División Entera (redondeo inferior) | 3 div 2 | 1
 
-| % | Infix | Modulo | 7 % 4 | 3
+| % | Infijo | Resto | 7 % 4 | 3
 
-.2+| %% .2+| Infix .2+| Divisibility | 6 %% 4 | False
+.2+| %% .2+| Infijo .2+| Divisible | 6 %% 4 | Falso
 
-<| 6 %% 3 <| True
+<| 6 %% 3 <| Verdadero
 
-| gcd | Infix | Greatest common denominator | 6 gcd 9 | 3
+| gcd | Infijo | Máximo común denominador | 6 gcd 9 | 3
 
-| lcm | Infix | Least common multiple | 6 lcm 9 | 18
+| lcm | Infijo | Mínimo común múltiplo | 6 lcm 9 | 18
 
 | == | Infix | Equal | 9 == 7  | False
 
