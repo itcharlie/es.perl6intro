@@ -243,7 +243,7 @@ La siguiente tabla muestra los operadores más utilizados.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
-| Operator | Type | Description | Example | Result
+| Operador | Tipo | Descripción | Ejemplo | Resultado
 
 | + | Infix | Addition | 1 + 2 | 3
 
