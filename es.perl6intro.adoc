@@ -79,7 +79,7 @@ Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
 
 Puedes ejecutar código Perl 6 mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce `perl6` y pulsa [Enter]. Aparecerá el prompt `>`. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o `exit` y pulsar [Enter] para salir al sistema.
 
-También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión `.pl6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.pl6` desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como `say` para visualizar por la salida estándar contenidos de texto con un salto de línea al final . 
+También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión `.pl6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.pl6` desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como `say` para visualizar por la salida estándar contenidos de texto con un salto de línea al final .
 
 REPL normalmente se utiliza para probar trozos pequeños de código, como una línea. En el caso de programas con más de una línea de código es recomendable guardarlos en un archivo y ejecutarlos como hemos visto.
 
@@ -219,14 +219,14 @@ Comentario 2
 =end comentario
 -----------------------------
 
-==== Quotes
-Strings need to be delimited by either double quotes or single quotes.
+==== Comillas
+El texto tiene que ir entre comillas dobles o simples.
 
-Always use double quotes:
+Utiliza siempre doble comillas:
 
-* if your string contains an apostrophe.
+* si el texto contiene un apóstrofe.
 
-* if your string contains a variable that needs to be interpolated.
+* si el texto necesita visualizar el texto de una variable (interpolación de variable).
 
 [source,perl6]
 -----------------------------------
