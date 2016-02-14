@@ -267,87 +267,87 @@ La siguiente tabla muestra los operadores más utilizados.
 
 | lcm | Infijo | Mínimo común múltiplo | 6 lcm 9 | 18
 
-| == | Infix | Equal | 9 == 7  | False
+| == | Infijo | Igual | 9 == 7  | Falso
 
-| != | Infix | Not equal | 9 != 7  | True
+| != | Infijo | No igual | 9 != 7  | Verdadero
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Infijo | Menor que | 9 < 7  | Falso
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Infijo | Mayor que | 9 > 7  | Verdadero
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Infijo | Menor o igual | 7 \<= 7  | Verdadero
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Infijo | Mayor o igual | 9 >= 7  | Verdadero
 
-| eq | Infix | String equal | "John" eq "John"  | True
+| eq | Infijo | Texto igual | "Juan" eq "Juan"  | Verdadero
 
-| ne | Infix | String not equal | "John" ne "Jane"  | True
+| ne | Infijo | Texto no igual | "Juan" ne "Juana"  | Verdadero
 
-| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | Infijo | Asignación | my $var = 7  | Asigna el valor `7` a la variable `$var`
 
-.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Infijo .2+| Texto concatenado | 9 ~ 7 | 97
 
-<m| "Hi " ~ "there"  <| Hi there
+<m| "Buenos " ~ "días"  <| Buenos días
 
-.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
+.2+| x .2+| Infijo .2+| Texto replicado | 13 x 3  | 131313
 
-<| "Hello " x 3  <| Hello Hello Hello
+<| "Hola " x 3  <| Hola Hola Hola
 
-| ~~ | Infix | Smart match |   |
+| ~~ | Infijo | Expresión regular |   |
 
-.2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
+.2+| ++ | Prefijo | Incremento | my $var = 2; ++$var;  | Incrementa la variable por 1 y devuelve `3` como resultado
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
+<m| Sufijo <d| Incremento <m| my $var = 2; $var++;  <| Devuelve la variable `2` y después la incrementa
 
-.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
+.2+|\--| Prefijo | Decremento | my $var = 2; --$var;  | Decrementa la variable en 1 y devuelve `1` como resultado
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+<m| Sufijo <d| Decremento <m| my $var = 2; $var--;  <| Devuelve la variable `2` y después la decrementa
 
-.3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
+.3+| + .3+| Prefijo .3+| Fuerza el operando a un valor numérico | +"3"  | 3
 
-<| +True <| 1
+<| +Verdadero <| 1
 
-<| +False <| 0
+<| +Falso <| 0
 
-.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
+.3+| - .3+| Prefijo .3+| Fuerza el operando a un valor numérico y devuelve la negación | -"3"  | -3
 
-<| -True <| -1
+<| -Verdadero <| -1
 
-<| -False <| 0
+<| -Falso <| 0
 
-.6+| ? .6+| Prefix .6+| Coerce the operand to a boolean value | ?0 | False
+.6+| ? .6+| Prefijo .6+| Fuerza el operando a un valor booleano | ?0 | Falso
 
-<| ?9.8 <| True
+<| ?9.8 <| Verdadero
 
-<| ?"Hello" <| True
+<| ?"Hola" <| Verdadero
 
-<| ?"" <| False
+<| ?"" <| Falso
 
-<| my $var; ?$var; <| False
+<| my $var; ?$var; <| Falso
 
-<| my $var = 7; ?$var; <| True
+<| my $var = 7; ?$var; <| Verdadero
 
-| ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
+| ! | Prefijo | Fuerza el operador a un valor booleano y devuelve la negación | !4 | Falso
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Infijo | Constructor de Series |  0..5  | Crea una serie de 0 a 5
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Infijo | Constructor de Series |  0..^5  | Crea una serie de 0 a 4
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Infijo | Constructor de Series |  0^..5  | Crea una serie de 1 a 5
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Infijo | Constructor de Series |  0\^..^5  | Crea una serie de 1 a 4
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Prefijo | Constructor de Series |  ^5  | Igual que 0..^5 Crea una serie de 0 a 4
 
-| ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| ... | Infijo | Constructor de listas vago |  0...9999  |  devuelve los elementos si son solicitados
 
-.2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
+.2+| {vbar} .2+| Prefijo .2+| Aplanamiento | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to http://doc.perl6.org/language/operators
+NOTA: En http://doc.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
 
 == Variables
 Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
@@ -399,7 +399,7 @@ say $age.is-prime;
 ----
 
 ----
-True
+Verdadero
 ----
 
 NOTE: For the complete list of methods applicable to Integers, see http://doc.perl6.org/type/Int
@@ -655,7 +655,7 @@ You will most probably never use the first two but they are listed for informati
 
 | Rat | Rational number (limited-precision) | 0.1 + 0.2 | 0.3
 
-| Bool | Boolean | !True | False
+| Bool | Boolean | !Verdadero | False
 
 |===
 
