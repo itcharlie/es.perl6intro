@@ -350,67 +350,67 @@ La siguiente tabla muestra los operadores más utilizados.
 NOTA: En http://doc.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
 
 == Variables
-Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
+Las variables en Perl 6 se reparten en tres categorías: Escalares, Arrays y Hashes.
 
-A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
+Un *sigil* (Signo en Latín) es un carácter utilizado como prefijo para categorizar variables.
 
-* `$` is used for scalars
-* `@` is used for arrays
-* `%` is used for hashes
+* `$` para escalares
+* `@` para arrays
+* `%` para hashes
 
-=== Scalars
-A scalar holds one value or reference.
-
-[source,perl6]
-----
-#String
-my $name = 'John Doe';
-say $name;
-
-#Integer
-my $age = 99;
-say $age;
-----
-
-A specific set of operations can be done on a scalar, depending on the value it holds.
+=== Escalares
+Un escalar contiene un valor o referencia.
 
 [source,perl6]
-.String
 ----
-my $name = 'John Doe';
-say $name.uc;
-say $name.chars;
-say $name.flip;
+#Texto
+my $nombre = 'Juan De Dios';
+say $nombre;
+
+#Entero
+my $edad = 99;
+say $edad;
 ----
 
-----
-JOHN DOE
-8
-eoD nhoJ
-----
-
-NOTE: For the complete list of methods applicable to Strings, see http://doc.perl6.org/type/Str
+Dependiendo del valor contenido, un escalar puede realizar una serie de operaciones concretas.
 
 [source,perl6]
-.Integer
+.Texto
 ----
-my $age = 17;
-say $age.is-prime;
+my $nombre = 'Juan De Dios';
+say $nombre.uc;
+say $nombre.chars;
+say $nombre.flip;
+----
+
+----
+JUAN DE DIOS
+12
+soiD eD nauJ
+----
+
+NOTA: Consulta http://doc.perl6.org/type/Str para una lista completa de métodos de texto.
+
+[source,perl6]
+.Enteros
+----
+my $edad = 17;
+say $edad.is-prime;
 ----
 
 ----
 Verdadero
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see http://doc.perl6.org/type/Int
+NOTA: Consulta http://doc.perl6.org/type/Int para una lista completa de métodos para enteros.
 
 [source,perl6]
-.Rational Number
+.Números Racionales
 ----
-my $age = 2.3;
-say $age.numerator;
-say $age.denominator;
-say $age.nude;
+my $edad = 2.3;
+say $edad.numerator;
+say $edad.denominator;
+say $edad.nude;
 ----
 
 ----
@@ -419,55 +419,55 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see http://doc.perl6.org/type/Rat
+NOTA: Consulta http://doc.perl6.org/type/Rat para una lista completa de métodos para números racionales.
 
 === Arrays
-Arrays are lists containing multiple values.
+Los Arrays son listas que contienen varios valores.
 
 [source,perl6]
 ----
-my @animals = ['camel','llama','owl'];
-say @animals;
+my @animales = ['camello','llama','búho'];
+say @animales;
 ----
 
-Many operations can be done on arrays as shown in the below example:
+Los arrays permiten muchas operaciones, como las siguientes:
 
-TIP: The tilde `~` is used for string concatenation.
+TIP: La tilde `~` se utiliza para concatenar texto.
 
 [source,perl6]
 .`Script`
 ----
-my @animals = ['camel','vicuña','llama'];
-say "The zoo contains " ~ @animals.elems ~ " animals";
-say "The animals are: " ~ @animals;
-say "I will adopt an owl for the zoo";
-@animals.push("owl");
-say "Now my zoo has: " ~ @animals;
-say "The first animal we adopted was the " ~ @animals[0];
-@animals.pop;
-say "Unfortunately the owl got away and we're left with: " ~ @animals;
-say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+my @animales = ['camello','vicuña','llama'];
+say "El zoo tiene " ~ @animales.elems ~ " animales";
+say "Los animales son: " ~ @animales;
+say "He conseguido un búho para el zoo";
+@animales.push("búho");
+say "Los animales del zoo ahora son: " ~ @animales;
+say "El primer animal del zoo es: " ~ @animales[0];
+@animales.pop;
+say "Desafortunadamente el búho se escapó y los animales que quedan son: " ~ @animales;
+say "Hemos dejado el zoo con un animal dentro";
+say "Dejamos ir a: " ~ @animales.splice(1,2) ~ " y dejamos en el zoo al " ~ @animales;
 ----
 
-.`Output`
+.`Salida`
 ----
-The zoo contains 3 animals
-The animals are: camel vicuña llama
-I will adopt an owl for the zoo
-Now my zoo has: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel
+El zoo tiene 3 animales
+Los animales son: camello vicuña llama
+He conseguido un búho para el zoo
+Los animales del zoo ahora son: camello vicuña llama búho
+El primer animal del zoo es: camello
+Desafortunadamente el búho se escapó y los animales que quedan son: camello vicuña llama
+Hemos dejado el zoo con un animal dentro
+Dejamos ir a: vicuña llama y dejamos en el zoo al camello
 ----
 
-.Explanation
-`.elems` returns the number of elements in an array. +
-`.push()` adds an element to the array. +
-We can access a specific element in the array by specifying its position `@animals[0]`. +
-`.pop` removes the last element from the array. +
-`.splice(a,b)` will remove the `b` elements that start at position `a`.
+.Explicación
+`.elems` devuelve el número de elementos de un array. +
+`.push()` añade un elemento a un array. +
+Podemos acceder a un elemento concreto del array indicando su posición `@animales[0]`. +
+`.pop` elimina el último elemento del array. +
+`.splice(a,b)` elimina `b` elementos que comienzan en la posición `a`.
 
 ==== Fixed-size arrays
 A basic array is declared as following:
