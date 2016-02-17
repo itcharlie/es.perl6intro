@@ -534,47 +534,46 @@ NOTA: Consulta http://doc.perl6.org/type/Array para tener la referencia completa
 
 === Hashes
 [source,perl6]
-.A Hash is a set of Key/Value pairs.
+.Un Hash es una colección de pares Clave/Valor.
 ----
-my %capitals = ('UK','London','Germany','Berlin');
-say %capitals;
+my %capitales = ('UK','Londres','Alemania','Berlin');
+say %capitales;
 ----
 
 [source,perl6]
-.Another succinct way of filling the hash:
+.Otra forma de insertar valores en un hash:
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
+my %capitales = (UK => 'Londres', Alemania => 'Berlin');
+say %capitales;
 ----
-
-Some of the methods that can be called on hashes are:
+Algunos de los métodos aplicables a los hashes son:
 [source,perl6]
 .`Script`
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-%capitals.push: (France => 'Paris');
-say %capitals.kv;
-say %capitals.keys;
-say %capitals.values;
-say "The capital of France is: " ~ %capitals<France>;
+my %capitales = (UK => 'Londres', Alemania => 'Berlin');
+%capitales.push: (Francia => 'Paris');
+say %capitales.kv;
+say %capitales.keys;
+say %capitales.values;
+say "La capital de Francia es: " ~ %capitales<Francia>;
 ----
 
 .`Output`
 ----
-(France Paris Germany Berlin UK London)
-(France Germany UK)
-(Paris Berlin London)
-The capital of France is: Paris
+(Alemania Berlin Francia Paris UK Londres)
+(Alemania Francia UK)
+(Berlin Paris Londres)
+La capital de Francia es: Paris
 ----
 
-.Explanation
-`.push: (key => 'Value')` adds a new key/value pair. +
-`.kv` returns a list containing all keys and values. +
-`.keys` returns a list that contains all keys. +
-`.values` returns a list that contains all values. +
-We can access a specific value in the hash by specifying its key `%hash<key>`
+.Explicación
+`.push: (Clave => 'Valor')` agrega un nuevo par clave/valor. +
+`.kv` devuelve una lista con todas las claves y valores. +
+`.keys` devuelve una lista con todas las claves. +
+`.values` devuelve una lista con todos los valores. +
+Podemos acceder a un valor concreto del hash indicando su clave `%hash<clave>`
 
-NOTE: For the complete Hash reference, see http://doc.perl6.org/type/Hash
+NOTA: Consulta http://doc.perl6.org/type/Hash para una referencia completa sobre hashes.
 
 === Types
 In the previous examples, we did not specify what type of values the variables should hold.
