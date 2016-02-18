@@ -38,7 +38,7 @@ naoum@hankache.com
 :sectnums:
 == Introducción
 === Qué es Perl 6
-Perl 6 es un lenguaje de alto nivel, de propósito general y de tipado múltiple.
+Perl 6 es un lenguaje de alto nivel, de propósito general y de tipado gradual.
 Perl 6 es multiparadigma y soporta programación Procedural, Orientada a Objetos y Funcional.
 
 .El lema de Perl 6:
@@ -575,14 +575,14 @@ Podemos acceder a un valor concreto del hash indicando su clave `%hash<clave>`
 
 NOTA: Consulta http://doc.perl6.org/type/Hash para una referencia completa sobre hashes.
 
-=== Types
-In the previous examples, we did not specify what type of values the variables should hold.
+=== Tipos
+En los ejemplos anteriores no hemos especificado el tipo de valor que debería contener cada variable.
 
-TIP: `.WHAT` will return the type of value held in a variable.
+TIP: `.WHAT` devuelve el tipo del valor que contiene la variable.
 
 [source,perl6]
 ---------------------
-my $var = 'Text';
+my $var = 'Texto';
 say $var;
 say $var.WHAT;
 
@@ -591,70 +591,69 @@ say $var;
 say $var.WHAT;
 ---------------------
 
-As you can see in the above example, the type of value in `$var` was once (Str) and then (Int).
+Como puedes ver en el ejemplo anterior, el tipo de valor en `$var` primero fue texto (Str) y después entero (Int).
 
-This style of programming is called dynamic typing. Dynamic in the sense that variables may contain values of Any type.
+Este estilo de programación se denomina tipado dinámico. Dinámico en el sentido de que las variables pueden contener valores de Cualquier tipo.
 
-Now try running the below example: +
-Notice `Int` before the variable name.
+Ahora intenta ejecutar el siguiente ejemplo: +
+Fíjate en el `Int` indicado antes de la variable.
 
 [source,perl6]
 -----------------------------------------
-my Int $var = 'Text';
+my Int $var = 'Texto';
 say $var;
 say $var.WHAT;
 -----------------------------------------
 
-It will fail and return this error message: `Type check failed in assignment to $var; expected Int but got Str`
+Este ejemplo devuelve un error indicando: `Type check failed in assignment to $var; expected Int but got Str`
 
-What happened is that we specified beforehand that the variable should be of type (Int).
-When we tried to assign an (Str) to it, it failed.
+Lo que ocurre es que hemos especificado como entero (Int) el tipo de la variable y falla al intentar asignar en ella un texto (Str).
 
-This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.
+Este estilo de programación se denomina tipado estático. Estático en el sentido de que la variable se define con un tipo determinado antes de asignarla y este tipo no puede cambiarse después.
 
-Perl 6 is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
+Perl 6 es un lenguaje de *tipado gradual*; lo que permite tipado *estático* y *dinámico*.
 
-.Arrays and hashes can also be statically typed:
+.Los arrays y hashes también pueden tener tipado estático:
 [source,perl6]
 ----
 my Int @array = 1,2,3;
 say @array;
 say @array.WHAT;
 
-my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
-say @multilingual;
-say @multilingual.WHAT;
+my Str @multilengua = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilengua;
+say @multilengua.WHAT;
 
-my Str %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
-say %capitals.WHAT;
+my Str %capitales = (UK => 'London', Alemania => 'Berlin');
+say %capitales;
+say %capitales.WHAT;
 
-my Int %country-codes = (UK => 44, Germany => 49);
-say %country-codes;
-say %country-codes.WHAT;
+my Int %código-país = (UK => 44, Alemania => 49);
+say %código-país;
+say %código-país.WHAT;
 ----
 
-.Below is a list of the most commonly used types:
-You will most probably never use the first two but they are listed for informational purpose.
+.A continuación tienes una lista con los tipos más comunes:
+Es probable que no utilices nunca los dos primeros, pero los mostramos de forma informativa.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
 |===
 
-| *Type* | *Description* | *Example* | *Result*
+| *Tipo* | *Descripción* | *Ejemplo* | *Resultado*
 
-| Mu | The root of the Perl 6 type hierarchy | |
+| Mu | La raíz de la jerarquía de tipos de Perl 6 | |
 
-| Any | Default base class for new classes and for most built-in classes | |
+| Any | Clase base por defecto para nuevas clases y para la mayoría de las clases nativas | |
 
-| Cool | Value that can be treated as a string or number interchangeably | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+| Cool | Valor que puede tratarse como texto o número indistintamente | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
-| Str | String of characters | my Str $var = "NEON"; say $var.flip; | NOEN
+| Str | Texto o cadena de carácteres | my Str $var = "NEON"; say $var.flip; | NOEN
 
-| Int | Integer (arbitrary-precision) | 7 + 7 | 14
+| Int | Entero (independientemente de la precisión) | 7 + 7 | 14
 
-| Rat | Rational number (limited-precision) | 0.1 + 0.2 | 0.3
+| Rat | Número racional (precisión limitada) | 0.1 + 0.2 | 0.3
 
-| Bool | Boolean | !Verdadero | False
+| Bool | Booleano | !True | False
 
 |===
 
