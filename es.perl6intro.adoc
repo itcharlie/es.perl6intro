@@ -657,10 +657,10 @@ Es probable que no utilices nunca los dos primeros, pero los mostramos de forma 
 
 |===
 
-=== Introspection
+=== Introspección
 
-Introspection is the process of getting information about an object properties like its type. +
-In one of the previous example we used `.WHAT` to return the type of the variable.
+Introspección es el proceso para adquirir información sobre las propiedades de un objeto, como por ejemplo su tipo. +
+En uno de los ejemplos anteriores utilizamos `.WHAT` para devolver el tipo de una variable.
 
 [source,perl6]
 ----
@@ -670,7 +670,7 @@ my $var2;
 say $var2.WHAT;   # (Any)
 $var2 = 1;
 say $var2.WHAT;   # (Int)
-$var2 = "Hello";
+$var2 = "Hola";
 say $var2.WHAT;   # (Str)
 $var2 = True;
 say $var2.WHAT;   # (Bool)
@@ -678,40 +678,41 @@ $var2 = Nil;
 say $var2.WHAT;   # (Any)
 ----
 
-The type of a variable holding a value is correlated to its value. +
-The type of a strongly declared empty variable is the type with which it was declared. +
-The type of an empty variable that wasn't strongly declared is `(Any)` +
-To clear the value of a variable, assign `Nil` to it.
+El tipo de una variable que contiene un valor se corresponde con su valor. +
+El tipo de una variable declarada de forma estática y sin valor es el tipo con el que se ha declarado. +
+El tipo de una variable vacía que no ha sido declarada de forma estática es `(Any)` +
+Asigna `Nil` a una variable para eliminar su valor.
 
-=== Scoping
-Before using a variable for the first time, it needs to be declared.
+=== Alcance
+Es necesario declarar una variable antes de utilizarla.
 
-Several declarators are used in Perl 6, `my` is what we have been using so far in the examples above.
+Perl 6 dispone de varias formas de declaración, y en los siguientes ejemplos utilizaremos `my`.
 
 [source,perl6]
 my $var=1;
 
-The `my` declarator give the variable *lexical* scope.
-In other words, the variable will only be accessible in the same block it was declared.
+La forma de declaración `my` proporciona a la variable un alcance *léxico*.
+Dicho de otro modo, la variable solo es accesible desde el mismo bloque donde es declarada.
 
-A block in Perl 6 is delimited by `{ }`.
-If no block is found, the variable will be available in the whole Perl script.
+En Perl 6 un bloque está delimitado por `{ }`.
+
+En caso de no existir bloque, la variable estará disponible en el script entero.
 
 [source,perl6]
 --------------------------------
 {
-  my Str $var = 'Text';
-  say $var; #is accessible
+  my Str $var = 'Texto';
+  say $var; #accesible
 }
-say $var; #is not accessible, returns an error
+say $var; #no accesible, da un error
 --------------------------------
 
-Since a variable is only accessible in the block where it is defined, the same variable name can be redefined in another block.
+Como la variable solo es accesible dentro del bloque donde está definida, la misma variable puede definirse de nuevo en cualquier otro bloque.
 
 [source,perl6]
 ----
 {
-  my Str $var = 'Text';
+  my Str $var = 'Texto';
   say $var;
 }
 my Int $var = 123;
