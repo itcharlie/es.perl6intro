@@ -872,66 +872,64 @@ if $número-de-asientos <= 5 {
 ----
 
 === unless
-The negated version of an if statement can be written using `unless`.
+La negación de `if` es `unless`.
 
-The following code:
-
-[source,perl6]
-----
-my $clean-shoes = False;
-
-if not $clean-shoes {
-  say 'Clean your shoes'
-}
-----
-can be written as:
+El siguiente código:
 
 [source,perl6]
 ----
-my $clean-shoes = False;
+my $limpiar-zapatos = False;
 
-unless $clean-shoes {
-  say 'Clean your shoes'
+if not $limpiar-zapatos {
+  say 'Limpia tus zapatos'
 }
 ----
+puede escribirse como:
 
-Negation in Perl 6 is done using either `!` or `not`.
+[source,perl6]
+----
+my $limpiar-zapatos = False;
 
-`unless (condition)` is used instead of `if not (condition)`.
+unless $limpiar-zapatos {
+  say 'Limpia tus zapatos'
+}
+----
+La negación en Perl 6 se realiza con `!` o con `not`.
 
-`unless` cannot have an `else` clause.
+`unless (condición)` se utiliza en lugar de `if not (condición)`.
+
+`unless` no puede utilizar la claúsula `else`.
 
 === with
 
-`with` behave like the `if` statement, but checks if the variable is defined.
+`with` es como `if` pero solo comprueba si la variable está definida.
 
 [source,perl6]
 ----
 my Int $var=1;
 
 with $var {
-  say 'Hello'
+  say 'Hola'
 }
 ----
-
-If you run the code without assigning a value to the variable nothing should happen.
+No ocurre nada si ejecutas el código sin asignar un valor a la variable.
 [source,perl6]
 ----
 my Int $var;
 
 with $var {
-  say 'Hello'
+  say 'Hola'
 }
 ----
 
-`without` is the negated version of `with`. You should be able to relate it to `unless`.
+`without` es la negación de `with` y es parecido a `unless`.
 
-If the first `with` condition is not met, an alternate path can be specified using `orwith`. +
-`with` and `orwith` can be compared to `if` and `elsif`.
+Si la primera condición `with` no se cumple, puede indicarse una alternativa mediante `orwith`. +
+`with` y `orwith` son parecidos a `if` y `elsif`.
 
 === for
 
-The `for` loop iterates over multiple values.
+`for` itera sobre una serie de valores.
 
 [source,perl6]
 ----
@@ -942,55 +940,56 @@ for @array -> $array-item {
 }
 ----
 
-Notice that we created an iteration variable `$array-item` in order to perform the operation `*100` on each array item.
+Observa que en la iteración hemos creado la variable `$array-item` para realizar la operación `*100` en cada elemento del array.
 
 === given
 
-`given` is the Perl 6 equivalent of the switch statement in other languages.
+En Perl 6 `given` viene a ser `switch` en otros lenguajes.
 
 [source,perl6]
 ----
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50'}
-    when Int { say "is an Int" }
+    when 0..50 { say 'Menos o igual a 50'}
+    when Int { say "es un Entero" }
     when 42  { say 42 }
-    default  { say "huh?" }
+    default  { say "¿ejem?" }
 }
 ----
 
-After a successful match, the matching process will stop.
+Cuando se produce la coincidencia no se evalúan las demás.
 
-Alternatively `proceed` will instruct Perl 6 to continue matching even after a successful match.
+Si utilizamos `proceed` continúa la evaluación aunque se produzca la coincidencia.
+
 [source,perl6]
 ----
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50';proceed}
-    when Int { say "is an Int";proceed}
+    when 0..50 { say 'Menos o igual a 50';proceed}
+    when Int { say "es un Entero";proceed}
     when 42  { say 42 }
-    default  { say "huh?" }
+    default  { say "¿ejem?" }
 }
 ----
 
 === loop
 
-`loop` is another way of writing a `for` loop.
+`loop` es otra forma de escribir un `for`.
 
-Actually `loop` is how `for` loops are  written in C-family programming languages.
+Actualmente `loop` viene a ser el `for` utilizado en la familia de lenguajes de C.
 
-Perl 6 belongs to the C-family languages.
+Perl 6 pertenece a la familia de lenguajes de C.
 
 [source,perl6]
 ----
 loop (my $i=0; $i < 5; $i++) {
-  say "The current number is $i"
+  say "El número actual es $i"
 }
 ----
 
-NOTE: For more info on loops and conditions, see http://doc.perl6.org/language/control
+NOTA: En http://doc.perl6.org/language/control tienes más información sobre bucles y condiciones
 
 == I/O
 In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
