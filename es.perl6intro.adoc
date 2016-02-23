@@ -992,69 +992,68 @@ loop (my $i=0; $i < 5; $i++) {
 NOTA: En http://doc.perl6.org/language/control tienes más información sobre bucles y condiciones
 
 == I/O
-In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
+En Perl 6, las dos interfaces más utilizadas de _Entrada/Salida_ son el _Terminal_ y los _Ficheros_.
 
-=== Basic I/O using the Terminal
+=== E/S básica mediante el Terminal
 
 ==== say
-`say` writes to the standard output. It appends a newline at the end. In other words, the following code:
+`say` escribe en la salida estándar agregando al final una línea nueva. En otras palabras, el siguiente código:
 
 [source,perl6]
 ----
-say 'Hello Mam.';
-say 'Hello Sir.';
+say 'Hola Mamá.';
+say 'Hola Señor.';
 ----
-will be written on 2 separate lines.
+escribirá dos líneas separadas.
 
 ==== print
-`print` on the other hand behave like `say` but doesn't add a new line.
+Por otro lado `print` es como `say` pero no agrega la línea nueva.
 
-Try replacing `say` with `print` and compare both results.
+Prueba a utilizar `say` en lugar de `print` y compara los resultados.
 
 ==== get
-`get` is used to capture input from the terminal.
+Para capturar la entrada desde el terminal utiliza `get`.
 
 [source,perl6]
 ----
-my $name;
+my $nombre;
 
-say "Hi, what's your name?";
-$name=get;
+say "¡Hola!, ¿cual es tu nombre?";
+$nombre=get;
 
-say "Dear $name welcome to Perl 6";
+say "¿Que tal $nombre?, bienvenido a Perl 6";
 ----
 
-When the above code runs, the terminal will be waiting for you to input your name.
-Subsequently, it will greet you.
+Este código hace que el terminal espere la introducción de tu nombre para después darte la bienvenida.
 
 ==== prompt
-`prompt` is a combination of `print` and `get`.
+`prompt` es una combinación entre `print` y `get`.
 
-The above example can be written like this:
-
-[source,perl6]
-----
-my $name = prompt("Hi, what's your name? ");
-
-say "Dear $name welcome to Perl 6";
-----
-
-=== Running Shell Commands
-Two subroutines can be used to run shell commands:
-
-* `run` Runs an external command without involving a shell
-
-* `shell` Runs a command through the system shell. All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on
+El ejemplo anterior puede escribirse de esta otra forma:
 
 [source,perl6]
 ----
-my $name = 'Neo';
-run 'echo', "hello $name";
+my $nombre = prompt("¡Hola!, ¿cual es tu nombre? ");
+
+say "¿Que tal $nombre?, bienvenido a Perl 6";
+----
+
+=== Ejecutando Comandos del Shell
+Podemos utilizar dos subrutinas para ejecutar comandos del shell:
+
+* `run` Ejecuta un comando externo sin la intervención del shell.
+
+* `shell` Ejecuta un comando desde el shell del sistema y tiene en cuenta todos sus caracteres especiales como tuberías, redirecciones, variables de entorno, sustitución de variables, etc.
+
+[source,perl6]
+----
+my $nombre = 'Neo';
+run 'echo', "Hola $nombre";
 shell "ls";
 ----
-`echo` and `ls` are common shell keywords. +
-`echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
-`ls` lists all files and folders in the current directory
+`echo` y `ls` son dos comandos típicos del shell. +
+`echo` visualiza texto en el terminal (equivale al `print` de Perl 6). +
+`ls` lista todos los archivos y carpetas del directorio actual.
 
 
 === File I/O
