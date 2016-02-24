@@ -1056,81 +1056,84 @@ shell "ls";
 `ls` lista todos los archivos y carpetas del directorio actual.
 
 
-=== File I/O
+=== E/S de Archivos
 ==== slurp
-`slurp` is used to read data from a file.
+`slurp` lee datos de un archivo.
 
-Create a text file with the following content:
+Crea un archivo de texto con el siguiente contenido:
 
-.datafile.txt
+.datos.txt
 ----
-John 9
-Johnnie 7
-Jane 8
-Joanna 7
+Juan 9
+Juanito 7
+Juana 8
+Juanita 7
 ----
 [source,perl6]
 ----
-my $data = slurp "datafile.txt";
-say $data;
+my $datos = slurp "datos.txt";
+say $datos;
 ----
 
 ==== spurt
-`spurt` is used to write data to a file.
+`spurt` escribe datos en un archivo.
 
 [source,perl6]
 ----
-my $newdata = "New scores:
-Paul 10
-Paulie 9
+my $datos-nuevos = "Nuevas puntuaciones:
+Pablo 10
+Pablin 9
 Paulo 11";
 
-spurt "newdatafile.txt", $newdata;
+spurt "datos-nuevos.txt", $datos-nuevos;
 ----
 
-After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
+El código anterior crea un nuevo archivo llamado _datos-nuevos.txt_ conteniendo las nuevas puntuaciones.
 
-=== Working with files and directories
-Perl 6 can list the contents of a directory without running shell commands (using `ls`) as seen in a previous example.
+=== Manipulando archivos y carpetas
+
+En un ejemplo anterior ya hemos visto que Perl 6 puede mostrar el contenido de una carpeta (mediante `ls`) sin utilizar el shell.
 
 [source,perl6]
 ----
-say dir;              #List files and folders in the current directory
-say dir "/Documents"; #List files and folders in the specified directory
+say dir;               #Muestra archivos y carpetas de la carpeta actual
+say dir "/Documentos"; #Muestra archivos y carpetas de la carpeta indicada
 ----
 
-In addition to that you can create new directories and delete them.
+Además, puedes crear carpetas nuevas y eliminarlas.
 
 [source,perl6]
 ----
-mkdir "newfolder";
-rmdir "newfolder";
+mkdir "carpeta-nueva";
+rmdir "carpeta-nueva";
 ----
 
-`mkdir` creates a new directory. +
-`rmdir` delete an empty directory. Returns an error if not empty.
+`mkdir` crea una carpeta nueva. +
+`rmdir` elimina una carpeta vacía. Devuelve un error en caso de no existir la carpeta.
 
-You can also check if the specified path exists, if it is a file or a directory:
+También puedes comprobar si la ruta indicada existe y si se trata de un archivo o una carpeta:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
+Crea una carpeta vacía llamada `carpeta123`, un archivo vacío llamado `script123.pl6` y el siguiente script:
 
 [source,perl6]
 ----
 say "script123.pl6".IO.e;
-say "folder123".IO.e;
+say "carpeta123".IO.e;
 
 say "script123.pl6".IO.d;
-say "folder123".IO.d;
+say "carpeta123".IO.d;
 
 say "script123.pl6".IO.f;
-say "folder123".IO.f;
+say "carpeta123".IO.f;
 ----
 
-`IO.e` checks if the directory/file exists. +
-`IO.f` checks if the path is a file. +
-`IO.d` checks if the path is a directory.
+Ejecuta el script.
 
-NOTE: For more info on I/O, see http://doc.perl6.org/type/IO
+`IO.e` comprueba si existe la carpeta/archivo. +
+`IO.f` comprueba si la ruta es un archivo. +
+`IO.d` comprueba si la ruta es una carpeta.
+
+NOTA: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
 
 == Subroutines
 === Definition
