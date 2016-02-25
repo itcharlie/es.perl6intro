@@ -1135,90 +1135,88 @@ Ejecuta el script.
 
 NOTA: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
 
-== Subroutines
-=== Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
+== Subrutinas
+=== Definición
+*Subrutinas* (también denominadas *subs* o *funciones*) son una forma de empaquetar un conjunto de funcionalidades. +
 
-A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
-Check out the below example:
+La definición de una subrutina comienza con la palabra clave `sub`. Una vez definida puede invocarse mediante su nombre. +
 
-[source,perl6]
-----
-sub alien-greeting {
-  say "Hello earthlings";
-}
-
-alien-greeting;
-----
-
-The previous example showcased a subroutine that  doesn't require any input.
-
-=== Signature
-Many subroutines would require some input in order to work. That input is provided by *arguments*.
-The number and type of arguments that this subroutine accepts is called its *signature*.
-
-The below subroutine accepts a string argument.
+Fíjate en el siguiente ejemplo:
 
 [source,perl6]
 ----
-sub say-hello (Str $name) {
-    say "Hello " ~ $name ~ "!!!!"
+sub saludo-alien {
+  say "Hola terrícolas";
 }
-say-hello "Paul";
-say-hello "Paula";
-----
 
-=== Multiple dispatch
-It is possible to define multiple subroutines having the same name but different signatures.
-When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
-This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
+saludo-alien;
+----
+El ejemplo anterior es una subrutina sin entrada de datos.
+
+=== Signatura
+Muchas subrutinas utilizan *argumentos* de entrada para trabajar con ellos.
+El número y tipo de argumentos que acepta una subrutina se denomina su *signatura*.
+
+La siguiente subrutina acepta un argumento de tipo string.
 
 [source,perl6]
 ----
-multi greet($name) {
-    say "Good morning $name";
+sub di-hola (Str $nombre) {
+    say "¡¡Hola " ~ $nombre ~ "!!"
 }
-multi greet($name, $title) {
-    say "Good morning $title $name";
-}
-
-greet "Johnnie";
-greet "Laura","Mrs.";
+di-hola "Pablo";
+di-hola "Paula";
 ----
 
-=== Default and Optional Arguments
-If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
-
-Alternatively Perl 6 provides us the ability to define subroutines with:
-
-* Optional Arguments
-* Default Arguments
-
-Optional arguments are defined by appending `?` to the argument name.
+=== Subrutinas múltiples
+Es posible definir varias subrutinas con el mismo nombre pero con distintas signaturas.
+Cuando la subrutina es llamada, el entorno de ejecución decidirá qué versión de subrutina utilizar dependiendo del número y tipo de argumentos proporcionados.
+Este tipo de subrutinas se definen con la palabra clave `multi` en lugar de `sub`.
 
 [source,perl6]
 ----
-sub say-hello($name?) {
-  with $name { say "Hello " ~ $name }
-  else { say "Hello Human" }
+multi saludo($nombre) {
+    say "Buenos días $nombre";
+}
+multi saludo($nombre, $título) {
+    say "Buenos días $título $nombre";
+}
+
+saludo "Juanito";
+saludo "Laura","Srta.";
+----
+
+=== Argumentos por defecto y opcionales
+Una subrutina fallará si se define para aceptar un argumento y éste no es proporcionado.
+
+Con Perl 6 podemos definir subrutinas con:
+
+* Argumentos opcionales
+* Argumentos por defecto
+
+Un argumento opcional se define agregando `?` al nombre del argumento.
+
+[source,perl6]
+----
+sub di-hola($nombre?) {
+  with $nombre { say "Hola " ~ $nombre }
+  else { say "Hola humano" }
+}
+di-hola;
+di-hola("Laura");
+----
+Si no se proporciona un argumento, puede definirse uno por defecto asignándole un valor en la definición de la subrutina.
+
+[source,perl6]
+----
+sub di-hola($nombre="Mateo") {
+  say "Hola " ~ $nombre;
 }
 say-hello;
 say-hello("Laura");
 ----
 
-If the user doesn't supply an argument, it can default to a specific value. +
-This is done by assigning a value to the argument within the subroutine definition.
-
-[source,perl6]
-----
-sub say-hello($name="Matt") {
-  say "Hello " ~ $name;
-}
-say-hello;
-say-hello("Laura");
-----
-
-NOTE: For more info on subroutines and functions, see http://doc.perl6.org/language/functions
+NOTA: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
 == Functional Programming
 In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
