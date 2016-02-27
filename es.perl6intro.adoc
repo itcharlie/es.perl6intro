@@ -1218,68 +1218,68 @@ say-hello("Laura");
 
 NOTA: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
-== Functional Programming
-In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
+== Programación Funcional
+En este apartado veremos algunas funcionalidades relacionadas con la Programación Funcional.
 
-=== Functions are first-class citizens
-Functions/subroutines are first-class citizens:
+=== Las Funciones son de primera clase
+Las funciones/subrutinas son de primera clase:
 
-* They can be passed as an argument
+* Pueden utilizarse como un argumento
 
-* They can be returned from another function
+* Pueden ser devueltas desde otra función
 
-* They can be assigned to a variable
+* Pueden asignarse a una variable
 
-A great example to demonstrate this concept is the `map` function. +
-`map` is a *higher order function*, it accepts another function as an argument.
+Un buen ejemplo para demostrar este concepto es la función `map`. +
+`map` es una *función de orden superior* que acepta otra función como argumento.
 
 [source,perl6]
 .Script
 ----
 my @array = <1 2 3 4 5>;
-sub squared($x) {
+sub cuadrado($x) {
   $x ** 2
 }
-say map(&squared,@array);
+say map(&cuadrado,@array);
 ----
 
-.Output
+.Salida
 ----
 (1 4 9 16 25)
 ----
 
-.Explanation
-We defined a subroutine called `squared`, it will take to the power of two any number provided as argument. +
-Next, we used `map`, a higher order function and gave it two arguments, a subroutine and an array. +
-The result is a list of all squared elements of the array.
+.Explicación
+Hemos definido la subrutina `cuadrado` que calcula la potencia de dos de cualquier número proporcionado como argumento. +
+Después utilizamos `map`, una función de orden superior que toma dos argumentos: una subrutina y un array. +
+El resultado es una lista de todos los cuadrados de los elementos del array.
 
-Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
+Ten en cuenta que cuando pasamos una subrutina como argumento, es necesario utilizar el prefijo `&` en el nombre.
 
-=== Closures
-All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+=== Clausuras
+Todos los objetos de código en Perl 6 son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.
 
-=== Anonymous functions
-An *anonymous function* is also called a *lambda*. +
-An anonymous function is not bound to an identifier (it has no name).
+=== Funciones anónimas
+Una *función anónima* también se denomina *lambda*. +
+Una función anónima no está vinculada a un identificador (no tiene nombre).
 
-Let's rewrite the `map` example using an anonymous function
+Reescribamos el ejemplo de `map` utilizando una función anónima
 [source,perl6]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-Notice that instead of declaring the subroutine and passing it as an argument to `map`, we defined it directly within. +
-The anonymous subroutine `\-> $x {$x ** 2}` has no handle and cannot be called.
+Observa que en lugar de declarar la función y pasarla a `map` como argumento, la definimos dentro directamente. +
+La función anónima `\-> $x {$x ** 2}` no puede ser llamada.
 
-In Perl 6 parlance we call this notation  a *pointy block*
+En la jerga de Perl 6 a esta notación la llamamos *punto de entrada al bloque*
 
 [source,perl6]
-.A pointy block may also be used to assign functions to variables:
+.Un punto de entrada al bloque también puede utilizarse para asignar funciones a variables:
 ----
-my $squared = -> $x {
+my $cuadrado = -> $x {
   $x ** 2
 }
-say $squared(9);
+say $cuadrado(9);
 ----
 
 === Chaining
