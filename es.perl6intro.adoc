@@ -1282,23 +1282,22 @@ my $cuadrado = -> $x {
 say $cuadrado(9);
 ----
 
-=== Chaining
-In Perl 6, methods can be chained, you no longer have to pass the result of a method to another one as an argument.
+=== Encadenamiento
+En Perl 6 los métodos pueden encadenarse. Esto quiere decir que no es necesario pasar el resultado de un método como argumento de otro método.
 
-Lets consider that you are provided with an array of values.
-You are asked to return the unique values of this array, sorted from biggest to smallest.
+¿Cómo obtendríamos los valores únicos de un array ordenados de mayor a menor?
 
-You might try to solve the problem by writing something close to this:
+Puedes resolver el problema escribiendo algo así:
 [source,perl6]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
-First we call the `unique` function on `@array` then we pass the result as an argument to `sort` and then we pass the result of sorting to `reverse`.
+Primero utilizamos la función `unique` sobre `@array`, después pasamos el resultado como argumento a `sort` y por último pasamos el resultado de la ordenación a `reverse`.
 
-In contrast with the above example, chaining methods is allowed in Perl 6. +
-The above example can be written as following, taking advantage of *method chaining*:
+En contraste con el ejemplo anterior, Perl 6 permite la encadenación de métodos. +
+El ejemplo anterior puede escribirse de la siguiente forma utilizando el *encadenamiento de métodos*:
 
 [source,perl6]
 ----
@@ -1307,12 +1306,13 @@ my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
 
-You can already see that chaining methods is _easier on the eye_.
+Como ves, el encadenamiento de métodos es _más visual_.
 
-=== Feed Operator
-The *feed operator*, called _pipe_ in some functional programming languages, yields yet a better visualization of method chaining.
+=== Operador de Alimentación
+El *operador de alimentación*, llamado _tubería_ en algunos lenguajes de programación funcional hace aún más visual el encadenamiento de métodos.
+
 [source,perl6]
-.Forward Feed
+.Alimentación hacia adelante
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
 @array ==> unique()
@@ -1322,18 +1322,18 @@ my @array = <7 8 9 0 1 2 4 3 5 6>;
 say @final-array;
 ----
 
-.Explanation
+.Explicación
 ----
-Start with `@array` then return a list of unique elements
-                    then sort it
-                    then reverse it
-                    then store the result in @final-array
+Comienza con `@array` y devuelve una lista de elementos únicos
+                    después los ordena
+                    después invierte el orden
+                    después guarda el resultado en @final-array
 ----
-As you can see the flow of the method calls is top-down.
+Como ves, el flujo de las llamadas a los métodos es de arriba hacia abajo.
 
 
 [source,perl6]
-.Backward Feed
+.Alimentación hacia atrás
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
 my @final-array-v2 <== reverse()
@@ -1343,9 +1343,9 @@ my @final-array-v2 <== reverse()
 say @final-array-v2;
 ----
 
-.Explanation
-The backward feed is like the forward feed, but written in reverse. +
-The flow of the method calls is bottom-up.
+.Explicación
+La alimentación hacia atrás es parecida a la anterior pero se escribe en orden inverso. +
+El flujo de las llamadas a los métodos es de abajo hacia arriba.
 
 === Hyper operator
 The *hyper operator* `>>.` will call a method on all elements of a list and return a list of all results.
