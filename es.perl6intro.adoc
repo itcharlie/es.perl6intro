@@ -1347,21 +1347,20 @@ say @final-array-v2;
 La alimentación hacia atrás es parecida a la anterior pero se escribe en orden inverso. +
 El flujo de las llamadas a los métodos es de abajo hacia arriba.
 
-=== Hyper operator
-The *hyper operator* `>>.` will call a method on all elements of a list and return a list of all results.
+=== Hiperoperador
+El *hiperoperador* `>>.` puede aplicar un método a todos los elementos de una lista y devolver una lista con todos los resultados.
 [source,perl6]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
-sub is-even($var) { $var %% 2 };
+sub es-par($var) { $var %% 2 };
 
 say @array>>.is-prime;
-say @array>>.&is-even;
+say @array>>.&es-par;
 ----
+Mediante el hiperoperador podemos utilizar todos los métodos ya definidos en Perl 6, por ej. `is-prime` que devuele si un número es primo o no. +
+Además, podemos definir funciones nuevas y utilizarlas mediante el hiperoperador agregando el prefijo `&` en el nombre del método, por ej. `&es-par`.
 
-Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method. E.g. `&is-even`
-
-This is very practical as it relieves us from writing a `for` loop to iterate over each value.
+El uso del hiperoperador es muy práctico pues evita escribir un bucle `for` para iterar sobre cada valor.
 
 === Junctions
 A *junction* is a logical superposition of values.
