@@ -1474,35 +1474,37 @@ Para entender esta relación veamos el siguiente ejemplo:
 
 En _orientación a objetos_ decimos que los objetos son *instancias* de una clase.
 
-Consider the below script:
+Veamos el siguiente script:
 [source,perl6]
 ----
-class Human {
-  has $name;
-  has $age;
-  has $sex;
-  has $nationality;
+class Humano {
+  has $nombre;
+  has $edad;
+  has $sexo;
+  has $nacionalidad;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-say $john;
+my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
+say $juan;
 ----
-The `class` keyword is used to define a class. +
-The `has` keyword is used to define attributes of a class. +
-The `.new()` method is called a *constructor*. It creates the object as an instance of the class it has been called on.
+La palabra clave `class` se utiliza para definir una clase. +
+La palabra clave `has` se utiliza para definir los atributos de una clase. +
+El método `.new()` se denomina *constructor* y crea el objeto como una instancia de la clase a la que ha sido llamada.
 
-In the above script, a new variable `$john` holds a reference to a new instance of "Human" defined by `Human.new()`. +
-The arguments passed to the `.new()` method are used to set the attributes of the underlying object.
+En el script anterior, la variable nueva `$juan` tiene una referencia a una instancia nueva de "Humano" definida por `Humano.new()`. +
 
-A class can be given _lexical scope_ using `my`:
+Los argumentos que se pasan al método `.new()` son utilizados para establecer los atributos del objeto en cuestión.
+
+Una clase puede tener un *alcance léxico* mediante `my`:
 [source,perl6]
 ----
-my class Human {
+my class Humano {
 
 }
 ----
 
-=== Encapsulation
+=== Encapsulación
+
 Encapsulation  is an object oriented concept that bundles a set of data and methods together. +
 The data (attributes) within an object should be *private*, in other words, accessible only from within the object. +
 In order to access the attributes from outside the object we use methods that we call *accessors*.
