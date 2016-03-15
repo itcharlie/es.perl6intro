@@ -1505,20 +1505,21 @@ my class Humano {
 
 === Encapsulación
 
-Encapsulation  is an object oriented concept that bundles a set of data and methods together. +
-The data (attributes) within an object should be *private*, in other words, accessible only from within the object. +
-In order to access the attributes from outside the object we use methods that we call *accessors*.
+La encapsulación es un concepto de la programación orientada a objetos que consiste en empaquetar un conjunto de datos y métodos. +
 
-The below two scripts have the same result.
+Los datos (atributos) dentro de un objeto deben ser *privados*, dicho de otro modo, solo son accesibles desde dentro del objeto. +
+Para acceder a los atributos de un objeto desde fuera de él utilizamos *métodos de acceso*.
 
-.Direct access to the variable:
+El siguiente par de scripts tienen el mismo resultado.
+
+.Acceso directo a la variable:
 [source,perl6]
 ----
 my $var = 7;
 say $var;
 ----
 
-.Encapsulation:
+.Encapsulación:
 [source,perl6]
 ----
 my $var = 7;
@@ -1527,36 +1528,34 @@ sub sayvar {
 }
 say sayvar;
 ----
-The method `sayvar` is an accessor. It let us access the value of the variable without getting direct access to it.
+El método `sayvar` es un método de acceso que nos permite acceder al valor de la variable sin acceder directamente a ella.
 
-Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
-Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
-Two twigils are used in classes:
+Perl 6 realiza la encapsulación mediante *twigils* (sigilos secundarios) y se ubican entre el sigilo y el nombre del atributo. +
+En las clases se utilizan dos twigils:
 
-* `!` is used to explicitly declare that the attribute is private.
-* `.` is used to automatically generate an accessor for the attribute.
+* `!` para indicar de forma explícita que el atributo es privado.
+* `.` para crear automáticamente un método de accceso al atributo.
 
-By default, all attributes are private but it is a good habit to always use the `!` twigil.
+Por defecto todos los atributos son privados pero es una buena costumbre utilizar siempre el twigil `!`.
 
-In line with what we said we should rewrite the above class as following:
+En relación a lo que hemos dicho, podemos escribir de nuevo la clase anterior de la siguiente forma:
 [source,perl6]
 ----
-class Human {
-  has $!name;
-  has $!age;
-  has $!sex;
-  has $!nationality;
+class Humano {
+  has $!nombre;
+  has $!edad;
+  has $!sexo;
+  has $!nacionalidad;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-say $john;
+my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
+say $juan;
 ----
-Append to the script the following statement: `say $john.age;` +
-It will return the following error: `Method 'age' not found for invocant of class 'Human'` +
-The reason being that `$!age` is private and can only be used within the object.
-Trying to access it outside the object will return an error.
+Si añades al script la siguiente sentencia: `say $juan.edad;` +
+devolverá el siguiente error: `Method 'edad' not found for invocant of class 'Humano'` +
+Esto es debido a que `$!edad` es un atributo privado y solo puede utilizarse desde dentro del objeto. Como hemos visto, intentar acceder a este atributo desde fuera del objeto devuelve un error.
 
-Now replace `has $!age` with `has $.age` and see what will be the result of `say $john.age;`
+Sustituye `has $!edad` por `has $.edad` y comprueba el resultado de `say $juan.edad;`
 
 === Named vs. Positional Arguments
 In Perl 6, all classes inherit a default `.new()` constructor. +
