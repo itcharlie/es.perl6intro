@@ -1557,39 +1557,36 @@ Esto es debido a que `$!edad` es un atributo privado y solo puede utilizarse des
 
 Sustituye `has $!edad` por `has $.edad` y comprueba el resultado de `say $juan.edad;`
 
-=== Named vs. Positional Arguments
-In Perl 6, all classes inherit a default `.new()` constructor. +
-It can be used to create objects by providing it with arguments. +
-The default constructor can only be provided with *named arguments*. +
-If you consider the above example, you'll remark that all the arguments supplied to `.new()` are defined by name:
+=== Argumentos Posicionales vs. Nombrados
+En Perl 6 todas las clases heredan un constructor `.new()` por defecto que puede utilizarse para crear objetos proporcionándole argumentos. +
+El constructor por defecto solo acepta *argumentos nombrados*. +
+Como puedes ver en el ejemplo anterior, los argumentos que tiene `.new()` están definidos por nombre:
 
-* name => 'John'
+* nombre => 'Juan'
 
-* age => 23
+* edad => 23
 
-
-What if i do not want to supply the name of each attribute each time i want to create a new object? +
-Then I need to create another constructor that accepts *positional arguments*.
+¿Puedo ahorrarme el nombre de cada atributo al crear un objeto? Sí, pero necesito crear otro constructor que acepte *argumentos posicionales*.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  #new constructor that overrides the default one.
-  method new ($name,$age,$sex,$nationality) {
-    self.bless(:$name,:$age,:$sex,:$nationality);
+class Humano {
+  has $.nombre;
+  has $.edad;
+  has $.sexo;
+  has $.nacionalidad;
+  #nuevo constructor que sustituye el de por defecto.
+  method new ($nombre,$edad,$sexo,$nacionalidad) {
+    self.bless(:$nombre,:$edad,:$sexo,:$nacionalidad);
   }
 }
 
-my $john = Human.new('John',23,'M','American');
-say $john;
+my $juan = Humano.new('Juan',23,'M','Español');
+say $juan;
 ----
-The constructor that accepts positional arguments need to be defined as seen above.
+El constructor que acepta argumentos posicionales necesita definirse como puedes ver arriba.
 
-=== Methods
+=== Métodos
 
 ==== Introduction
 Methods are the _subroutines_ of an object. +
