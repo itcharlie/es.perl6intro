@@ -1584,57 +1584,52 @@ class Humano {
 my $juan = Humano.new('Juan',23,'M','Español');
 say $juan;
 ----
-El constructor que acepta argumentos posicionales necesita definirse como puedes ver arriba.
+El constructor que acepta argumentos posicionales necesita definirse en la forma que puedes ver arriba.
 
 === Métodos
 
-==== Introduction
-Methods are the _subroutines_ of an object. +
-Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
+==== Introducción
+Los métodos son las _subrutinas_ de un objeto. +
+Al igual que las subrutinas, los métodos pueden empaquetar un conjunto de funcionalidades, aceptar *argumentos*, tener una *signatura* y definirse como *múltiples*.
 
-Methods are defined using the `method` keyword. +
-In normal circumstances, methods are required to perform some sort of action on the objects' attributes.
-This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
-The outside world, can only interact with the object methods, and has no access to its attributes.
+Los métodos se definen con la palabra clave `method` y normalmente se utilizan para realizar alguna acción sobre los atributos de los objetos, reforzando así el concepto de encapsulación donde los atributos del objeto solo pueden manipularse dentro del objeto mediante sus métodos.
+Desde fuera solo podemos acceder a los métodos de los objetos y no a sus atributos.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  has $.eligible;
-  method assess-eligibility {
-      if self.age < 21 {
-        $!eligible = 'No'
+class Humano {
+  has $.nombre;
+  has $.edad;
+  has $.sexo;
+  has $.nacionalidad;
+  has $.es-adulto;
+  method evalúa_es-adulto {
+      if self.edad < 18 {
+        $!es-adulto = 'No'
       } else {
-        $!eligible = 'Yes'
+        $!es-adulto = 'Sí'
       }
   }
-
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-$john.assess-eligibility;
-say $john.eligible;
+my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
+$juan.evalúa_es-adulto;
+say $juan.es-adulto;
 ----
 
-Once methods are defined within a class, they can be called on an object using the _dot notation_: +
-_object_ *.* _method_ or as in the above example: `$john.assess-eligibility`
+Una vez definidos los métodos de una clase, pueden invocarse en un objeto mediante la _notación de punto_: +
+_objeto_ *.* _método_, como en el ejemplo que hemos visto antes: `$juan.evalúa_es-adulto`
 
-Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword. +
+Si en la definición del método necesitamos hacer referencia al objeto en sí para invocar a otro método utilizaremos la palabra clave `self`. +
+Si en la definición del método necesitamos hacer referencia a un atributo utilizaremos `!` aunque el atributo esté definido con `.` +
+Mientras el twigil `.` declara el atributo, con `!` se realiza el método de acceso.
+En el ejemplo anterior `if self.edad < 18` y `if $!edad < 18` tendrán el mismo efecto, aunque técnicamente son distintos:
 
-Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
-The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
+* `self.edad` es una llamada al método (de acceso) `.edad` +
+También puede escribirse como `$.edad`
+* `$!age` es una llamada directa a la variable
 
-In the above example `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
-
-* `self.age` calls the `.age` method (accessor) +
-Can be written alternatively as `$.age`
-* `$!age` is a direct call to the variable
-
-==== Private methods
+==== Métodos privados
 Normal methods can be called on objects from outside the class.
 
 *Private methods* are methods that can only be called from within the class. +
