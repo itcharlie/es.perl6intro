@@ -1627,7 +1627,7 @@ En el ejemplo anterior `if self.edad < 18` y `if $!edad < 18` tendrán el mismo 
 
 * `self.edad` es una llamada al método (de acceso) `.edad` +
 También puede escribirse como `$.edad`
-* `$!age` es una llamada directa a la variable
+* `$!edad` es una llamada directa a la variable
 
 ==== Métodos privados
 Normal methods can be called on objects from outside the class.
