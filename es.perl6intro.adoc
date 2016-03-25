@@ -1630,71 +1630,69 @@ También puede escribirse como `$.edad`
 * `$!edad` es una llamada directa a la variable
 
 ==== Métodos privados
-Normal methods can be called on objects from outside the class.
+Puede llamarse a un método normal de un objeto desde fuera de la clase.
 
-*Private methods* are methods that can only be called from within the class. +
-A possible use case would be a method that calls another one for specific action.
-The method that interfaces with the outside world is public while the one referenced should stay private.
-We do not want users to call it directly, so we declare it as private.
+Los *métodos privados* solo pueden llamarse desde dentro de la clase. +
+El caso podría ser un método que llama a otro para realizar una acción concreta. El método que interactúa con el mundo exterior es público y a la vez llama al otro método que permanece privado. Al declarar al método como privado conseguimos que el usuario no pueda interactuar con él directamente.
 
-The declaration of a private method requires the use of the `!` twigil before its name. +
-Private methods are called with `!` instead of `.`
+Declarar un método privado requiere utilizar el twigil `!` antes de su nombre. +
+Estos métodos privados se llaman mediante `!` en lugar de `.`
 
 [source,perl6]
 ----
-method !iamprivate {
-  #code goes in here
+method !soyprivado {
+  #código
 }
 
-method iampublic {
-  self!iamprivate;
-  #do additional things
+method soypúblico {
+  self!soyprivado;
+  #más código
 }
 ----
 
-=== Class Attributes
+=== Atributos de Clase
 
-*Class attributes* are attributes that belong to the class itself and not to its objects. +
-They can be initialized during definition. +
-Class attributes are declared using `my` instead of `has`. +
-They are called on the class itself instead of its objects.
+Los *atributos de Clase* son atributos que pertenecen a la clase en sí y no a sus objetos. +
+Pueden inicializarse durante su definición. +
+Los atributos de Clase se declaran mediante `my` en lugar de `has`. +
+Se llaman en la clase en sí en lugar de sus objetos.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  my $.counter = 0;
-  method new($name) {
-    Human.counter++;
-    self.bless(:$name);
+class Humano {
+  has $.nombre;
+  my $.contador = 0;
+  method new($nombre) {
+    Humano.contador++;
+    self.bless(:$nombre);
   }
 }
-my $a = Human.new('a');
-my $b = Human.new('b');
+my $a = Humano.new('a');
+my $b = Humano.new('b');
 
-say Human.counter;
+say Humano.contador;
 ----
 
-=== Access Type
-Until now all the examples that we've seen, used accessors to get information from the objects' attributes.
+=== Tipo de Acceso
+Todos los ejemplos que hemos visto hasta ahora utilizan métodos de acceso para acceder a la información de los atributos de los objetos.
 
-What if we need to modify the value of an attribute? +
-We need to label it as _read/write_ using the following keywords `is rw`
+¿Y si necesitamos modificar el valor de un atributo? +
+Para ello necesitamos etiquetar ese atributo como _lectura/escritura_ mediante la palabra clave `is rw`
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age is rw;
+class Humano {
+  has $.nombre;
+  has $.edad is rw;
 }
-my $john = Human.new(name => 'John', age => 21);
-say $john.age;
+my $juan = Humano.new(nombre => 'Juan', edad => 21);
+say $juan.edad;
 
-$john.age = 23;
-say $john.age;
+$juan.edad = 23;
+say $juan.edad;
 ----
-By default, all attributes are declared as _read only_ but you can explicitly do it using `is readonly`
+Todos los atributos se declaran por defecto como _solo lectura_ y también puedes hacerlo de forma explícita mediante `is readonly`
 
-=== Inheritance
+=== Herencia
 ==== Introduction
 *Inheritance* is yet another concept of object oriented programming.
 
