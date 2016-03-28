@@ -1693,112 +1693,111 @@ say $juan.edad;
 Todos los atributos se declaran por defecto como _solo lectura_ y también puedes hacerlo de forma explícita mediante `is readonly`
 
 === Herencia
-==== Introduction
-*Inheritance* is yet another concept of object oriented programming.
+==== Introducción
+*Herencia* es otro concepto de la programación orientada a objetos.
 
-When defining classes, soon enough we will realize that some attributes/methods are common to many classes. +
-Should we duplicate code? +
-NO! We should use *inheritance*
+Cuando definimos clases pronto nos damos cuenta de que algunas veces utilizan los mismos métodos y atributos. +
+¿Es necesario duplicar código? +
+¡NO! Hay que utilizar la *herencia*
 
-Let's consider we want to define two classes a class for Human beings and a class for Employees. +
-Human beings have 2 attributes: name and age. +
-Employees have 4 attributes: name, age, company and salary
+Pensemos en definir dos clases, una clase para seres humanos y otra clase para empleados. +
+Los seres humanos tienen 2 atributos: nombre y edad. +
+Los empleados tienen 4 atributos: nombre, edad, compañía y salario.
 
-One would be tempted to define the classes as follow:
+Sin pensar, uno definiría las clases de la siguiente forma:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class Humano {
+  has $.nombre;
+  has $.edad;
 }
 
-class Employee {
-  has $.name;
-  has $.age;
-  has $.company;
-  has $.salary;
+class Empleado {
+  has $.nombre;
+  has $.edad;
+  has $.compañía;
+  has $.salario;
 }
 ----
-While technically correct the above piece of code is considered conceptually poor.
+El código anterior aunque técnicamente es correcto, conceptualmente es pobre.
 
-A better way to write it would be as follow:
+Hay una forma mejor de escribirlo:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class Humano {
+  has $.nombre;
+  has $.edad;
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
+class Empleado is Humano {
+  has $.compañía;
+  has $.salario;
 }
 ----
-The `is` keyword defines inheritance. +
-In object oriented parlance we say Employee is a *child* of Human, and Human is a *parent* of Employee.
+La herencia se define mediante la palabra clave `is`. +
+En orientación a objetos decimos que Empleado es *hijo* de Humano, y Humano es *padre* de Empleado.
 
-All child classes inherit the attributes and methods of the parent class, so there is no need to redefine them.
+Todas las clases hijas heredan los atributos y métodos de su clase padre, por lo que no es necesario definirlos de nuevo.
 
-==== Overriding
-Classes inherit all attributes and methods from their parent classes. +
-There are cases where we need the method in the child class to behave differently than the one inherited. +
-To achieve this, we redefine the method in the child class. +
-This concept is called *overriding*.
+==== Anulación de herencia
+Las clases heredan todos los atributos y métodos de sus clases padre correspondientes. +
+Hay casos donde es necesario que un método heredado actúe de forma distinta. +
+Para conseguirlo, redefinimos el método en cuestión en la clase hija. +
+Este concepto se llama *anulación de herencia*.
 
-In the below example, the method `introduce-yourself` is inherited by the Employee class.
+En el siguiente ejemplo, el método `preséntate` se hereda de la clase Empleado.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
+class Humano {
+  has $.nombre;
+  has $.edad;
+  method preséntate {
+    say 'Hola, soy un ser humano y mi nombre es ' ~ self.nombre;
   }
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
+class Empleado is Humano {
+  has $.compañía;
+  has $.salario;
 }
 
-my $john = Human.new(name =>'John', age => 23,);
-my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
+my $juan = Humano.new(nombre =>'Juan', edad => 23,);
+my $juana = Empleado.new(nombre =>'Juana', edad => 25, compañía => 'Acme', salario => 4000);
 
-$john.introduce-yourself;
-$jane.introduce-yourself;
+$juan.preséntate;
+$juana.preséntate;
 ----
-Overriding works as follow:
+La anulación de herencia funciona así:
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
+class Humano {
+  has $.nombre;
+  has $.edad;
+  method preséntate {
+    say 'Hola, soy un ser humano y mi nombre es ' ~ self.nombre;
   }
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
-  method introduce-yourself {
-    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+class Empleado is Humano {
+  has $.compañía;
+  has $.salario;
+  method preséntate {
+    say 'Hola, soy un empleado, mi nombre es ' ~ self.nombre ~ ' y trabajo en: ' ~ self.compañía;
   }
-
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $juan = Humano.new(nombre =>'Juan',edad => 23,);
+my $juana = Empleado.new(nombre =>'Juana',edad => 25,compañía => 'Acme',salario => 4000);
 
-$john.introduce-yourself;
-$jane.introduce-yourself;
+$juan.preséntate;
+$juana.preséntate;
 ----
 
-Depending of which class the object is, the right method will be called.
+El método correspondiente será aplicado dependiendo de la clase a la que pertenece el objeto.
 
-==== Submethods
+==== Submétodos
 *Submethods* are a type of method that are not inherited by child classes. +
 They are only accessible from the class they were declared in. +
 They are defined using the `submethod` keyword.
