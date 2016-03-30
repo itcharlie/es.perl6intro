@@ -1798,111 +1798,110 @@ $juana.preséntate;
 El método correspondiente será aplicado dependiendo de la clase a la que pertenece el objeto.
 
 ==== Submétodos
-*Submethods* are a type of method that are not inherited by child classes. +
-They are only accessible from the class they were declared in. +
-They are defined using the `submethod` keyword.
+Los *submétodos* son un tipo de método que no son heredables en las clases hijas. +
+Solo son accesibles desde la clase donde son declarados. +
+Se definen utilizando la palabra clave `submethod`.
 
-=== Multiple Inheritance
-Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
-
-[source,perl6]
-----
-class bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
-  }
-}
-
-class line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
-  }
-}
-
-class combo-chart is bar-chart is line-chart {
-}
-
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
-
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
-----
-
-.`Output`
-----
-Actual sales:
-[10 9 11 8 7 10]
-Forecast sales:
-[9 8 10 7 6 9]
-Actual vs Forecast:
-[10 9 11 8 7 10]
-----
-
-.Explanation
-The `combo-chart` class should be a able to hold two series, one for the actual values plotted on bars,
-and another for forecast values plotted on a line. +
-This is why we defined it as a child of `line-chart` and `bar-chart`. +
-You should have noticed that calling the method `plot` on the `combo-chart` didn't yield the required result.
-Only one series was plotted. +
-Why did this happen? +
-`combo-chart` inherits from `line-chart` and `bar-chart`, and both of them have a method called `plot`.
-When we call that method on `combo-chart` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
-
-.Correction
-In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
+=== Herencia Múltiple
+Perl 6 permite la herencia múltiple. Una clase puede heredar de varias clases.
 
 [source,perl6]
 ----
-class bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
+class graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
   }
 }
 
-class line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
+class graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
   }
 }
 
-class combo-chart is bar-chart is line-chart {
-  method plot {
-    say @.bar-values;
-    say @.line-values;
-  }
+class multi-gráfica is graf-barras is graf-líneas {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
 ----
 
-.`Output`
+.`Salida`
 ----
-Actual sales:
+Ventas actuales:
 [10 9 11 8 7 10]
-Forecast sales:
+Previsión de ventas:
 [9 8 10 7 6 9]
-Actual vs Forecast:
+Actual vs Previsión:
+[10 9 11 8 7 10]
+----
+
+.Explicación
+La clase `multi-gráfica` debería ser capaz de tener dos series, una para los valores actuales de las barras y otra para los valores de las previsiones de las líneas. +
+Por esa razón hemos la hemos definido como hija de `graf-líneas` y `graf-barras`. +
+Te habrás dado cuenta que al llamar al método `dibujar` en `multi-gráfica` no tenemos el resultado deseado.
+Solo se dibuja una serie. +
+¿Qué ha ocurrido? +
+`multi-gráfica` hereda de `graf-líneas` y de `graf-barras` y ambas tienen un método llamado `dibujar`.
+Cuando llamamos a ese método desde `multi-gráfica` Perl 6 trata de resolver internamente el conflicto llamando a uno de los métodos heredados.
+
+.Correción
+Para que funcione correctamente necesitamos anular la herencia del método `dibujar` en `multi-gráfica`.
+
+[source,perl6]
+----
+class graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
+  }
+}
+
+class graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
+  }
+}
+
+class multi-gráfica is graf-barras is graf-líneas {
+  method dibujar {
+    say @.valores-barras;
+    say @.valores-líneas;
+  }
+}
+
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
+
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
+----
+
+.`Salida`
+----
+Ventas actuales:
+[10 9 11 8 7 10]
+Previsión de ventas:
+[9 8 10 7 6 9]
+Actual vs Previsión:
 [10 9 11 8 7 10]
 [9 8 10 7 6 9]
 ----
