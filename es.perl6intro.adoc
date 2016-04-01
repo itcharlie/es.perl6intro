@@ -1907,96 +1907,95 @@ Actual vs Previsión:
 ----
 
 === Roles
-*Roles* are somehow similar to classes in the sense that they are a collection of attributes and methods.
+Los *Roles* son similares de alguna manera a las clases en el sentido que son una colección de atributos y métodos.
 
-Roles are declared with the keyword `role` and classes that wish to implement the role can do so using the `does` keyword.
+Los roles se declaran con la palabra clave `role` y las clases que quieran implementar el rol pueden hacerlo mediante la palabra clave `does`.
 
-.Lets rewrite the multiple inheritance example using roles:
-[source,perl6]
-----
-role bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
-  }
-}
-
-role line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
-  }
-}
-
-class combo-chart does bar-chart does line-chart {
-  method plot {
-    say @.bar-values;
-    say @.line-values;
-  }
-}
-
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
-
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
-----
-
-Run the above script and you will see that results are the same.
-
-By now you're asking yourself; if roles behave like classes what's their use? +
-To answer your question modify the first script used to showcase multiple inheritance,
-the one where we _forgot_ to override the `plot` method.
+.Vamos a escribir de nuevo el ejemplo de la herencia múltiple pero mediante roles:
 
 [source,perl6]
 ----
-role bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
+role graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
   }
 }
 
-role line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
+role graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
   }
 }
 
-class combo-chart does bar-chart does line-chart {
+class multi-gráfica does graf-barras does graf-líneas {
+  method dibujar {
+    say @.valores-barras;
+    say @.valores-líneas;
+  }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
+----
+Verás que el resultado es el mismo que antes sin utilizar roles.
+
+Y ahora te preguntarás; si un rol es como una clase ¿cual es la función del rol? +
+Para responder la pregunta, modifica el primer script que hemos utilizado para mostrar el caso de la herencia múltiple, en el que _olvidamos_ anular la herencia del método `dibujar`, pero utilizando roles nuevamente.
+
+[source,perl6]
+----
+role graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
+  }
+}
+
+role graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
+  }
+}
+
+class multi-gráfica does graf-barras does graf-líneas {
+}
+
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
+
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
 ----
 
-.`Output`
+.`Salida`
 ----
-===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+===SORRY!=== Error while compiling
+Method 'dibujar' must be resolved by class multi-gráfica because it exists in multiple roles (graf-líneas, graf-barras)
 ----
 
-.Explanation
-If multiple roles are applied to the same class, and a conflict arises, a compile-time error will be thrown. +
-This is a much safer approach than multiple inheritance where conflicts are not considered errors and are simply resolved at runtime.
+.Explicación
+Tendremos un error en tiempo de compilación si aplicamos varios roles a la misma clase mientras exista un conflicto. +
+Este enfoque es mucho más seguro que la herencia múltiple donde los conflictos no se consideran errores y se resuelven simplemente en tiempo de ejecución.
 
-Roles will warn you that there's a conflict.
+Los roles te avisarán si existe un conflicto.
 
 === Introspection
 *Introspection* is the process of getting information about an object properties like its type, or its attributes or its methods.
