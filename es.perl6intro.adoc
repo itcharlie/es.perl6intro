@@ -1997,53 +1997,52 @@ Este enfoque es mucho más seguro que la herencia múltiple donde los conflictos
 
 Los roles te avisarán si existe un conflicto.
 
-=== Introspection
-*Introspection* is the process of getting information about an object properties like its type, or its attributes or its methods.
+=== Introspección
+La *Introspección* es la forma de ver las propiedades de un objeto como el tipo, atributos o métodos.
 
 [source,perl6]
 ----
-class Human {
-  has Str $.name;
-  has Int $.age;
-  method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
+class Humano {
+  has Str $.nombre;
+  has Int $.edad;
+  method preséntate {
+    say 'Hola, soy un ser humano y mi nombre es ' ~ self.nombre;
   }
 }
 
-class Employee is Human {
-  has Str $.company;
-  has Int $.salary;
-  method introduce-yourself {
-    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+class Empleado is Humano {
+  has Str $.compañía;
+  has Int $.salario;
+  method preséntate {
+    say 'Hola, soy un empleado, mi nombre es ' ~ self.nombre ~ ' y trabajo en: ' ~ self.compañía;
   }
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $juan = Humano.new(nombre =>'Juan',edad => 23,);
+my $juana = Empleado.new(nombre =>'Juana',edad => 25,compañía => 'Acme',salario => 4000);
 
-say $john.WHAT;
-say $jane.WHAT;
-say $john.^attributes;
-say $jane.^attributes;
-say $john.^methods;
-say $jane.^methods;
-say $jane.^parents;
-if $jane ~~ Human {say 'Jane is a Human'};
+say $juan.WHAT;
+say $juana.WHAT;
+say $juan.^attributes;
+say $juana.^attributes;
+say $juan.^methods;
+say $juana.^methods;
+say $juana.^parents;
+if $juana ~~ Humano {say 'Juana es Humana'};
 ----
-Introspection is facilitated by:
+La introspeción proporciona la siguiente información:
 
-* `.WHAT` returns the class from which the object has been created.
+* `.WHAT` devuelve la clase a la que pertenece el objeto.
 
-* `.^attributes` returns a list containing all attributes of the objects.
+* `.^attributes` devuelve una lista con todos los atributos del objeto.
 
-* `.^methods` returns all methods that can be called on the object.
+* `.^methods` devuelve todos los métodos accesibles del objeto.
 
-* `.^parents` returns all parent classes of the class the object belongs.
+* `.^parents` devuelve todas las clases padre a las que pertenece la clase del objeto.
 
-* `~~` is called the smart-match operator.
-It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
+* `~~` es el operador de coincidencia inteligente. Devuelve _True_ si el objeto pertenece a la clase con la que se compara o con cualquier clase heredada.
 
-== Exception Handling
+== Manejo de Excepciones
 
 === Catching Exceptions
 *Exceptions* are a special behavior that happens at runtime when something goes wrong. +
