@@ -1998,7 +1998,7 @@ Este enfoque es mucho más seguro que la herencia múltiple donde los conflictos
 Los roles te avisarán si existe un conflicto.
 
 === Introspección
-La *Introspección* es la forma de ver las propiedades de un objeto como el tipo, atributos o métodos.
+La *Introspección* es la forma de ver las propiedades de un objeto; como el tipo, atributos o métodos.
 
 [source,perl6]
 ----
@@ -2042,138 +2042,135 @@ La introspeción proporciona la siguiente información:
 
 * `~~` es el operador de coincidencia inteligente. Devuelve _True_ si el objeto pertenece a la clase con la que se compara o con cualquier clase heredada.
 
-== Manejo de Excepciones
+== Control de Excepciones
 
-=== Catching Exceptions
-*Exceptions* are a special behavior that happens at runtime when something goes wrong. +
-We say that exceptions are _thrown_.
+=== Captura de Excepciones
+Las *excepciones* son situaciones especiales que ocurren en tiempo de ejecución cuando algo va mal. +
+Decimos que las excepciones son _lanzadas_.
 
-Consider the below script that runs correctly:
-
-[source,perl6]
-----
-my Str $name;
-$name = "Joanna";
-say "Hello " ~ $name;
-say "How are you doing today?"
-----
-
-.`Output`
-----
-Hello Joanna
-How are you doing today?
-----
-
-Now consider this script that throws an exception:
+Veamos el siguiente script que realiza una ejecución correcta:
 
 [source,perl6]
 ----
-my Str $name;
-$name = 123;
-say "Hello " ~ $name;
-say "How are you doing today?"
+my Str $nombre;
+$nombre = "Juana";
+say "Hola " ~ $nombre;
+say "¿Qué haces hoy?"
 ----
 
-.`Output`
+.`Salida`
 ----
-Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+Hola Juana
+¿Qué haces hoy?
 ----
 
-You should have remarked that whenever an error occurs (in this case assigning a number to a string variable) the program will stop and other lines of code will not be evaluated, even if correct.
-
-*Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
+Ahora veamos un script que lanza una excepción:
 
 [source,perl6]
 ----
-my Str $name;
+my Str $nombre;
+$nombre = 123;
+say "Hola " ~ $nombre;
+say "¿Qué haces hoy?"
+----
+
+.`Salida`
+----
+Type check failed in assignment to $nombre; expected Str but got Int
+  in block <unit> at exceptions.pl6 line 2
+----
+Debes tener en cuenta que cuando se produce un error (en este caso debido a la asignación de un número a una variable de texto) el programa se interrumpirá y no ejecutará las siguientes líneas de código aunque éstas sean correctas.
+
+El *Control de excepciones* se produce cuando se _lanza_ una excepción y es _capturada_ de forma que el script continúa su ejecución.
+
+[source,perl6]
+----
+my Str $nombre;
 try {
-  $name = 123;
-  say "Hello " ~ $name;
+  $nombre = 123;
+  say "Hola " ~ $nombre;
   CATCH {
     default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
+      say "¿Puedes decirme tu nombre de nuevo? No podemos encontrarlo en el registro.";
     }
   }
 }
-say "How are you doing today?";
+say "¿Qué haces hoy?";
 ----
 
-.`Output`
+.`Salida`
 ----
-Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?
+¿Puedes decirme tu nombre de nuevo? No podemos encontrarlo en el registro.
+¿Qué haces hoy?
 ----
 
-Exception handling is done by using a `try-catch` block.
+El Control de excepciones se realiza utilizando un bloque `try-catch`.
 
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
+  #código
+  #si algo va mal, el script saltará al bloque CATCH
+  #si todo es correcto, el script ignorará el bloque CATCH
   CATCH {
     default {
-      #the code in here will be evaluated only if an exception has been thrown
+      #aquí se ejecuta código si se lanza una excepción
     }
   }
 }
 ----
-
-The `CATCH` block can be defined the same way a `given` block is defined.
-This means we can _catch_ and handle differently many types of exceptions.
+El bloque `CATCH` puede definirse igual que el bloque `given`.
+Esto significa que podemos _capturar_ y controlar distintos tipos de excepciones.
 
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
+  #código
+  #si algo va mal, el script saltará al bloque CATCH
+  #si todo es correcto, el script ignorará el bloque CATCH
   CATCH {
-    when X::AdHoc { #do something if an exception of type X::AdHoc is thrown }
-    when X::IO { #do something if an exception of type X::IO is thrown }
-    when X::OS { #do something if an exception of type X::OS is thrown }
-    default { #do something if an exception is thrown and doesn't belong to the above types }
+    when X::AdHoc { #hace algo si se lanza una excepción de tipo X::AdHoc }
+    when X::IO { #hace algo si se lanza una excepción de tipo X::IO }
+    when X::OS { #hace algo si se lanza una excepción de tipo X::OS }
+    default { #hace algo si se lanza una excepción y no está contemplada en los tipos anteriores }
   }
 }
 ----
 
-=== Throwing Exceptions
-In contrast to catching exceptions, Perl 6 also allows you to explicitly throw exceptions. +
-Two types of exceptions can be thrown:
+=== Lanzando Excepciones
+En contraste con la captura de excepciones, Perl 6 te permite lanzar excepciones de forma explícita. +
+Se pueden lanzar dos tipos de excepciones:
 
-* ad-hoc exceptions
+* Excepciones ad-hoc
 
-* typed exceptions
+* Excepciones por tipo
 
 [source,perl6]
 .ad-hoc
 ----
-my Int $age = 21;
-die "Error !";
+my Int $edad = 21;
+die "¡Error!";
 ----
 
 [source,perl6]
-.typed
+.por tipo
 ----
-my Int $age = 21;
-X::AdHoc.new(payload => 'Error !').throw;
+my Int $edad = 21;
+X::AdHoc.new(payload => '¡Error!').throw;
 ----
+Las excepciones ad-hoc se lanzan utilizando la subrutina `die` seguida del mensaje describiendo la excepción.
 
-Ad-hoc exceptions are thrown using the `die` subroutine followed by the exception message.
+Las excepciones por tipo son objetos, y como vemos en el ejemplo anterior utilizan el constructor `.new()`. +
+Todas las excepciones por tipo pertenecen a la clase `X`. A continuación tienes algunos ejemplos: +
+`X::AdHoc` es el tipo de excepción más simple +
+`X::IO` errores relacionados con operaciones de E/S +
+`X::OS` errores relacionados con el Sistema Operativo +
+`X::Str::Numeric` errores relacionados con la conversión de una cadena de texto a un valor numérico
 
-Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
-All typed exceptions descend from class `X` , below are a few examples: +
-`X::AdHoc` is the simplest exception type +
-`X::IO` is related to IO errors +
-`X::OS` is related to OS errors +
-`X::Str::Numeric` related to trying to coerce a string to a number
-
-NOTE: For a complete list of exception types and their associated methods go to http://doc.perl6.org/type.html and navigate to types starting with X.
+NOTA: Tienes una lista completa de tipos de excepciones y sus métodos asociados en http://doc.perl6.org/type.html. Busca los tipos que comienzan con X::.
 
 
-== Regular Expressions
+== Expresiones Regulares
 A regular expression, or _regex_ is a sequence of characters that is used for pattern matching. +
 The easiest way to understand it is to think of it as a pattern.
 
