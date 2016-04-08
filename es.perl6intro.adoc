@@ -2171,122 +2171,121 @@ NOTA: Tienes una lista completa de tipos de excepciones y sus métodos asociados
 
 
 == Expresiones Regulares
-A regular expression, or _regex_ is a sequence of characters that is used for pattern matching. +
-The easiest way to understand it is to think of it as a pattern.
+Una expresión regular, o _regex_ es una secuencia de caracteres utilizada como patrón para encontrar coincidencias. +
+Para entenderlo mejor piensa en ello como un patrón.
 
 [source,perl6]
 ----
-if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+if 'iluminación' ~~ m/ ilumina / {
+    say "iluminación contiene la palabra ilumina";
 }
 ----
 
-In this example, the smart match operator `~~` is used to check if a string (enlightenment) contains the word (light). +
-"Enlightenment" is matched against a regex `m/ light /`
+En este ejemplo, el operador inteligente de coincidencia `~~` se utiliza para comprobar si el texto (iluminación) contiene la palabra (ilumina). +
+"Iluminación" se compara con la regex `m/ ilumina /`
 
-=== Regex definition
+=== Definición de Regex
+Una expresión regular puede definirse de las siguientes formas:
 
-A regular expression can be defined as follows:
+* `/ilumina/`
 
-* `/light/`
+* `m/ilumina/`
 
-* `m/light/`
+* `rx/ilumina/`
 
-* `rx/light/`
+A menos que se indique de forma explícita, el espacio en blanco es ignorado, da igual `m/ilumina/` que `m/ ilumina /`.
 
-Unless specified explicitly, white space is irrelevant, `m/light/` and `m/ light /` are the same.
-
-=== Matching characters
-Alphanumeric characters and the underscore `_` are written as is. +
-All other characters have to be escaped using a backslash or surrounded by quotes.
-
-[source,perl6]
-.Backslash
-----
-if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
-}
-----
+=== Coincidencia de caracteres
+Los caracteres alfanuméricos y el guión bajo `_` se escriben tal cual. +
+El resto de caracteres deben ser escapados utilizando la barra invertida o backslash o ir entre comillas.
 
 [source,perl6]
-.Single quotes
+.Barra invertida o Backslash
 ----
-if 'Age = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+if 'Temperatura: 13' ~~ m/ \: / {
+    say "El texto contiene el caracter dos puntos :";
 }
 ----
 
 [source,perl6]
-.Double quotes
+.Comillas simples
 ----
-if 'name@company.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+if 'Edad = 13' ~~ m/ '=' / {
+    say "El texto contiene el caracter igual = ";
 }
 ----
 
-=== Matching categories of characters
-Characters can be classified into categories and we can match against them. +
-We can also match against the inverse of that category (everything except it):
+[source,perl6]
+.Comillas dobles
+----
+if 'nombre@empresa.com' ~~ m/ "@" / {
+    say "Dirección de mail válida porque contiene el caracter @";
+}
+----
+
+=== Coincidencia de categorías de caracteres
+Los caracteres se pueden clasificar en categorías y podemos realizar comparaciones con ellas. +
+También podemos comparar la inversa de la categoría (todo menos ella):
 
 |===
 
-| *Category* | *Regex* | *Inverse* | *Regex*
+| *Categoría* | *Regex* | *Inversa* | *Regex*
 
-| Word character (letter, digit or underscore) | \w | Any character except a word character | \W
+| Caracter de palabra (letra, dígito o guión bajo) | \w | Cualquier caracter menos un caracter de palabra | \W
 
-| Digit | \d | Any character except a digit | \D
+| Dígito | \d | Cualquier caracter menos un dígito | \D
 
-| Whitespace | \s | Any character except a whitespace | \S
+| Espacio en blanco | \s | Cualquier caracter menos un espacio en blanco | \S
 
-| Horizontal whitespace | \h | Any character except a horizontal whitespace | \H
+| Espacio en blanco horizontal | \h | Cualquier caracter menos un caracter en blanco horizontal | \H
 
-| Vertical whitespace | \v | Any character except a vertical whitespace | \V
+| Espacio en blanco vertical | \v | Cualquier caracter menos un caracter en blanco horizontal | \V
 
-| Tab | \t | Any character except a Tab | \T
+| Tabulador | \t | Cualquier caracter menos el tabulador | \T
 
-| New line | \n | Any character except a new line | \N
+| Línea nueva | \n | Cualquier caracter menos una línea nueva | \N
 
 |===
 
 [source,perl6]
 ----
-if "John123" ~~ / \d / {
-  say "This is not a valid name, numbers are not allowed";
+if "Juan123" ~~ / \d / {
+  say "Nombre no válido, no se permiten números";
 } else {
-  say "This is a valid name"
+  say "Nombre válido"
 }
-if "John-Doe" ~~ / \s / {
-  say "This string contains whitespace";
+if "Juan-Dios" ~~ / \s / {
+  say "El texto contiene un espacio en blanco";
 } else {
-  say "This string doesn't contain whitespace"
+  say "El texto no contiene un espacio en blanco"
 }
 ----
 
-=== Unicode properties
-Matching against categories of characters as seen in the preceding section is convenient. +
-That being said, a more systematic approach would be to use of Unicode properties. +
-Unicode properties are enclosed in `<: >`
+=== Propiedades Unicode
+Lo normal es comparar categorías de caracteres como hemos visto. +
+Dicho esto, podemos tener un enfoque más sistemático utilizando propiedades Unicode. +
+Las propiedades Unicode se indican entre `<: >`
 
 [source,perl6]
 ----
-if "John123" ~~ / <:N> / {
-  say "Contains a number";
+if "Juan123" ~~ / <:N> / {
+  say "Contiene un número";
 } else {
-  say "Doesn't contain a number"
+  say "No contiene un número"
 }
-if "John-Doe" ~~ / <:Lu> / {
-  say "Contains an uppercase letter";
+if "Juan-Dios" ~~ / <:Lu> / {
+  say "Contiene una letra en mayúsculas";
 } else {
-  say "Doesn't contain an upper case letter"
+  say "No contiene una letra en mayúsculas"
 }
-if "John-Doe" ~~ / <:Pd> / {
-  say "Contains a dash";
+if "Juan-Dios" ~~ / <:Pd> / {
+  say "Contiene un guión";
 } else {
-  say "Doesn't contain a dash"
+  say "No contiene un guión"
 }
 ----
 
-=== Wildcards
+=== Comodines
 Wildcards can also be used in a regex.
 
 The dot `.` means any single character.
