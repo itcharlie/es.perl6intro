@@ -2286,97 +2286,96 @@ if "Juan-Dios" ~~ / <:Pd> / {
 ----
 
 === Comodines
-Wildcards can also be used in a regex.
+Se pueden utilizar también comodines en una regex.
 
-The dot `.` means any single character.
+El punto `.` significa cualquier caracter.
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+    say "Coincide";
 }
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+    say "Coincide";
 }
 if 'ac' ~~ m/ a.c / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 ----
 
-=== Quantifiers
-Quantifiers come after a character and are used to specify how many times we are expecting it.
+=== Cuantificadores
+Los cuantificadores van después de un caracter y especifican cuantas veces se repite éste.
 
-The question mark `?` means zero or one time.
+El interrogante `?` significa que se repite una vez o ninguna.
 
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 if 'c' ~~ m/ a?c / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 ----
 
-The star `*` means zero or multiple times.
+El asterisco `*` significa que se repite una vez o más de una vez o ninguna.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
-}
+    say "No coincide";
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 if 'z' ~~ m/ a*z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 ----
 
-The `+` means at least one time.
+El símbolo `+` significa que se repite al menos una vez.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 if 'z' ~~ m/ a+z / {
-    say "Match";
+    say "Coincide";
   } else {
-    say "No Match";
+    say "No coincide";
 }
 ----
 
-=== Match Results
+=== Resultados de las coincidencias
 Whenever the process of matching a string against a regex is successful,
 the match result is stored in a special variable `$/`
 
