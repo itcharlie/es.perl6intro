@@ -2171,7 +2171,7 @@ NOTA: Tienes una lista completa de tipos de excepciones y sus métodos asociados
 
 
 == Expresiones Regulares
-Una expresión regular, o _regex_ es una secuencia de caracteres utilizada como patrón para encontrar coincidencias. +
+Una expresión regular, o _regex_ es una secuencia de caracteres que se utiliza para encontrar un patrón. +
 Para entenderlo mejor piensa en ello como un patrón.
 
 [source,perl6]
@@ -2195,7 +2195,7 @@ Una expresión regular puede definirse de las siguientes formas:
 
 A menos que se indique de forma explícita, el espacio en blanco es ignorado, da igual `m/ilumina/` que `m/ ilumina /`.
 
-=== Coincidencia de caracteres
+=== Búsqueda de caracteres
 Los caracteres alfanuméricos y el guión bajo `_` se escriben tal cual. +
 El resto de caracteres deben ser escapados utilizando la barra invertida o backslash o ir entre comillas.
 
@@ -2223,7 +2223,7 @@ if 'nombre@empresa.com' ~~ m/ "@" / {
 }
 ----
 
-=== Coincidencia de categorías de caracteres
+=== Categorías de caracteres
 Los caracteres se pueden clasificar en categorías y podemos realizar comparaciones con ellas. +
 También podemos comparar la inversa de la categoría (todo menos ella):
 
@@ -2375,46 +2375,45 @@ if 'z' ~~ m/ a+z / {
 }
 ----
 
-=== Resultados de las coincidencias
-Whenever the process of matching a string against a regex is successful,
-the match result is stored in a special variable `$/`
+=== Extracción de resultados
+Cuando se encuentra el patrón buscado, el resultado se guarda en la variable especial `$/`
 
 [source,perl6]
 .Script
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+if 'Rakudo es el compilador de Perl 6' ~~ m/:s Perl 6/ {
+    say "El resultado es: " ~ $/;
+    say "El texto antes del resultado es: " ~ $/.prematch;
+    say "El texto después del resultado es: " ~ $/.postmatch;
+    say "La posición de comienzo del resultado es: " ~ $/.from;
+    say "La posición final del resultado es: " ~ $/.to;
 }
 ----
 
-.Output
+.Salida
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is:  compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+El resultado es: Perl 6
+El texto antes del resultado es: Rakudo es el compilador de
+El texto después del resultado es:
+La posición inicial del resultado es: 27
+La posición final del resultado es: 33
 ----
 
-.Explanation
-`$/` returns a _Match Object_ (the string that matches the regex) +
-The following methods can be called on the _Match Object_: +
-`.prematch` returns the string preceding the match. +
-`.postmatch` returns the string following the match. +
-`.from` returns the starting position of the match. +
-`.to` returns the ending position of the match. +
+.Explicación
+`$/` devuelve un _Objeto de Coincidencia_ (el texto encontrado o resultado de la regex) +
+El _Objeto de Coincidencia_ tiene los siguientes métodos: +
+`.prematch` devuelve el texto que hay antes del resultado. +
+`.postmatch` devuelve el texto que hay después del resultado. +
+`.from` devuelve la posición inicial del resultado. +
+`.to` devuelve la posición final del resultado. +
 
-TIP: By default whitespace in a regex definition is irrelevant. +
-If we want to match against a regex containing whitespace we have to do so explicitly. +
-The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered and not discarded. +
-Alternatively we could have written the regex as `m/ Perl\s6 /` and used `\s` which as we saw earlier is a placeholder for whitespace. +
-If a regex contains more than a single whitespace, using `:s` becomes more effective in contrast with using `\s` for each and every whitespace.
+TIP: Por defecto el espacio en blanco en una regex es irrelevante. +
+Si queremos tener en cuenta los espacios en blanco en una regex tenemos que hacerlo de forma explícita. +
+El parámetro `:s` en la regex `m/:s Perl 6/` hace que la regex tenga en cuenta los espacios en blanco. +
+Otra forma de hacerlo sería así `m/ Perl\s6 /` donde `\s`, como hemos visto antes, es la regex para encontrar el espacio en blanco. +
+Si la regex contiene más de un espacio en blanco, es más efectivo utilizar `:s` que utilizar `\s` para cada espacio en blanco.
 
-=== Example
+=== Ejemplo
 Lets check if an email is valid or not. +
 For the sake of this example we will assume that a valid email address is formed as following: +
 first name [dot] last name [at] company [dot] (com/org/net)
