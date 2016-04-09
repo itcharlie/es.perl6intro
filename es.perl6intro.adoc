@@ -2414,76 +2414,76 @@ Otra forma de hacerlo sería así `m/ Perl\s6 /` donde `\s`, como hemos visto an
 Si la regex contiene más de un espacio en blanco, es más efectivo utilizar `:s` que utilizar `\s` para cada espacio en blanco.
 
 === Ejemplo
-Lets check if an email is valid or not. +
-For the sake of this example we will assume that a valid email address is formed as following: +
-first name [dot] last name [at] company [dot] (com/org/net)
+Vamos a comprobar si una dirección de email es correcta o no. +
+Para este ejemplo asumiremos que una dirección de email correcta está formada así: +
+nombre [punto] apellido [arroba] compañía [punto] (com/org/net)
 
-WARNING: The regex used in this example for email validation is not very accurate. +
-Its sole purpose is to demonstrate regex functionality in Perl 6. +
-Do not use it as-is in production.
+WARNING: La regex que utilizaremos en este ejemplo para validar una dirección de email no es muy precisa. +
+Su propósito es demostrar el funcionamiento de las regex en Perl 6. +
+No utilizar en producción.
 
 [source,perl6]
 .Script
 ----
-my $email = 'john.doe@perl6.org';
+my $email = 'juan.dios@perl6.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
-  say $/ ~ " is a valid email";
+  say $/ ~ " es un email válido";
 } else {
-  say "This is not a valid email";
+  say "No es una email válido";
 }
 ----
 
-.Output
-`john.doe@perl6.org is a valid email`
+.Salida
+`juan.dios@perl6.org es un email válido`
 
-.Explanation
-`<:L>` matches a single letter +
-`<:L>+` matches a single letter or more +
-`\.` matches a single [dot] character +
-`\@` matches a single [at] character +
-`<:L+:N>` matches a letter and a number +
-`<:L+:N>+` matches one or more (letters and numbers) +
+.Explicación
+`<:L>` coincide con una letra +
+`<:L>+` coincide con una letra o más de una +
+`\.` coincide con un caracter de [punto] +
+`\@` coincide con un caracter de [arroba] +
+`<:L+:N>` coincide con una letra o más de una y un número +
+`<:L+:N>+` coincide con una o más (una o más letras y un número) +
 
-The regex can be decomposed as following:
+La regex se puede descomponer así:
 
-* *first name* `<:L>+`
+* *nombre* `<:L>+`
 
-* *[dot]* `\.`
+* *[punto]* `\.`
 
-* *last name* `<:L>+`
+* *apellido* `<:L>+`
 
-* *[at]* `\@`
+* *[arroba]* `\@`
 
-* *company name* `<:L+:N>+`
+* *nombre de la compañía* `<:L+:N>+`
 
-* *[dot]* `\.`
+* *[punto]* `\.`
 
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.Alternatively a regex can be broken down into multiple named regexes
+.Otra forma de hacerlo es descomponer la regex en varias regex con nombre
 ----
-my $email = 'john.doe@perl6.org';
-my regex many-letters { <:L>+ };
-my regex dot { \. };
-my regex at { \@ };
-my regex many-letters-numbers { <:L+:N>+ };
+my $email = 'juan.dios@perl6.org';
+my regex varias-letras { <:L>+ };
+my regex punto { \. };
+my regex arroba { \@ };
+my regex varias-letras-numeros { <:L+:N>+ };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
-  say $/ ~ " is a valid email";
+if $email ~~ / <varias-letras> <punto> <varias-letras> <arroba> <varias-letras-numeros> <punto> <varias-letras> / {
+  say $/ ~ " es un email válido";
 } else {
-  say "This is not a valid email";
+  say "No es una email válido";
 }
 ----
 
-A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
-A named regex can be called using the following syntax: `<regex-name>`
+Una regex con nombre se define de la siguiente forma: `my regex nombre-regex { definición de la regex }` +
+Para utilizar una regex, invocamos su nombre de esta forma: `<nombre-regex>`
 
-NOTE: For more info on regexes, see http://doc.perl6.org/language/regexes
+NOTA: En http://doc.perl6.org/language/regexes tienes más información sobre regex.
 
-== Perl 6 Modules
+== Módulos en Perl 6
 Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
 text manipulation, graphics, web, databases, network protocols etc.
 
