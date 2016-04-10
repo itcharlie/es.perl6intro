@@ -592,7 +592,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_módulos_en_perl_6">12. Módulos en Perl 6</a>
 <ul class="sectlevel2">
-<li><a href="#_using_modules">12.1. Using Modules</a></li>
+<li><a href="#_utilizando_módulos">12.1. Utilizando Módulos</a></li>
 </ul>
 </li>
 <li><a href="#_unicode">13. Unicode</a>
@@ -4162,7 +4162,7 @@ No utilizar en producción.
 <code>\.</code> coincide con un caracter de [punto]<br>
 <code>\@</code> coincide con un caracter de [arroba]<br>
 <code>&lt;:L+:N&gt;</code> coincide con una letra o más de una y un número<br>
-<code>&lt;:L+:N&gt;+</code> coincide con una letra o más de una y un número (letras y números)<br></p>
+<code>&lt;:L+:N&gt;+</code> coincide con una o más (una o más letras y un número)<br></p>
 </div>
 <div class="paragraph">
 <p>La regex se puede descomponer así:</p>
@@ -4210,7 +4210,7 @@ No utilizar en producción.
 </div>
 <div class="paragraph">
 <p>Una regex con nombre se define de la siguiente forma: <code>my regex nombre-regex { definición de la regex }</code><br>
-Para utilizar una regex, invocamos su nombre de esta forma: <code>&lt;nombre-regex&gt;</code></p>
+Para utilizar una regex, la invocamos con su nombre de esta forma: <code>&lt;nombre-regex&gt;</code></p>
 </div>
 <div class="paragraph">
 <p>NOTA: En <a href="http://doc.perl6.org/language/regexes" class="bare">http://doc.perl6.org/language/regexes</a> tienes más información sobre regex.</p>
@@ -4222,66 +4222,55 @@ Para utilizar una regex, invocamos su nombre de esta forma: <code>&lt;nombre-reg
 <h2 id="_módulos_en_perl_6">12. Módulos en Perl 6</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
-text manipulation, graphics, web, databases, network protocols etc.</p>
+<p>Perl 6 es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
+manipulación de texto, gráficos, web, bases de datos, protocolos de red, etc.</p>
 </div>
 <div class="paragraph">
-<p>Reusability is a very important concept whereby programmers don&#8217;t have to reinvent the wheel each time they want to do a new task.</p>
+<p>La reutilización es un concepto muy importante para que los programadores no tengan que reinventar la rueda cada vez que quieran llevar a cabo una nueva tarea.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 allows the creation and redistribution of <strong>modules</strong>. Each module is a packaged set of functionality that can be reused once installed.</p>
+<p>Perl 6 permite la creación y redistribución de <strong>módulos</strong>. Cada módulo es un conjunto de funcionalidades empaquetadas que, una vez instalado, se puede reutilizar.</p>
 </div>
 <div class="paragraph">
-<p><em>Panda</em> is a module management tool that comes with Rakudo.</p>
+<p><em>Panda</em> es el gestor de módulos que incorpora Rakudo.</p>
 </div>
 <div class="paragraph">
-<p>To install a specific module, type the below command in your terminal:</p>
+<p>Para instalar un módulo concreto, introduce el siguiente comando en el terminal:</p>
 </div>
 <div class="paragraph">
-<p><code>panda install "module name"</code></p>
+<p><code>panda install "nombre del módulo"</code></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The Perl 6 modules directory can be found on: <a href="http://modules.perl6.org/" class="bare">http://modules.perl6.org/</a>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>NOTA: Puedes encontrar el directorio de módulos de Perl 6 en: <a href="http://modules.perl6.org/" class="bare">http://modules.perl6.org/</a></p>
 </div>
 <div class="sect2">
-<h3 id="_using_modules">12.1. Using Modules</h3>
+<h3 id="_utilizando_módulos">12.1. Utilizando Módulos</h3>
 <div class="paragraph">
-<p>MD5 is a cryptographic hash function that produces a 128-bit hash value.<br>
-MD5 has a variety of applications of which encryption of passwords stored in a database.
-When a new user registers, their credentials are not stored as plain text but rather <em>hashed</em>.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.</p>
+<p>MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit.<br>
+MD5 tiene muchas aplicaciones, como el cifrado de contraseñas que se pueden alojar en una base de datos.
+Cuando se registra un nuevo usuario, sus credenciales no se guardan en texto plano, se guardan <em>cifradas</em>.
+La razón de esto es que si un atacante compromete la base de datos no pueda conocer las contraseñas.
+Supongamos que necesitas un script que genere el hash MD5 de una contraseña para después guardarlo en la base de datos.</p>
 </div>
 <div class="paragraph">
-<p>Lets say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.</p>
-</div>
-<div class="paragraph">
-<p>Luckily there&#8217;s a Perl 6 module that already implemented the MD5 algorithm. Lets install it:<br>
+<p>Por suerte existe un módulo en Perl 6 que ya implementa el algoritmo MD5. Vamos a instalarlo:<br>
 <code>panda install Digest::MD5</code></p>
 </div>
 <div class="paragraph">
-<p>Now run the below script:</p>
+<p>Ahora ejecutemos el siguiente script:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">use</span> <span class="tok-n">Digest::MD5</span>;
-<span class="tok-k">my</span> <span class="tok-nv">$password</span> = <span class="tok-s">&quot;password123&quot;</span>;
-<span class="tok-k">my</span> <span class="tok-nv">$hashed-password</span> = <span class="tok-n">Digest::MD5</span>.<span class="tok-nb">new</span>.<span class="tok-n">md5_hex</span>(<span class="tok-nv">$password</span>);
+<span class="tok-k">my</span> <span class="tok-nv">$contraseña</span> = <span class="tok-s">&quot;contraseña123&quot;</span>;
+<span class="tok-k">my</span> <span class="tok-nv">$contraseña-cifrada</span> = <span class="tok-n">Digest::MD5</span>.<span class="tok-nb">new</span>.<span class="tok-n">md5_hex</span>(<span class="tok-nv">$contraseña</span>);
 
-<span class="tok-nb">say</span> <span class="tok-nv">$hashed-password</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-nv">$contraseña-cifrada</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In order to run the <code>md5_hex()</code> function that creates hashes, we need to load the required module.<br>
-The <code>use</code> keyword loads the module for use in the script.</p>
+<p>Para utilizar la función <code>md5_hex()</code> que produce el cifrado necesitaremos antes cargar el módulo requerido.<br>
+La palabra clave <code>use</code> carga el módulo para después utilizarlo en el script.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -4290,8 +4279,8 @@ The <code>use</code> keyword loads the module for use in the script.</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks.<br>
-It should be combined with a salt <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">https://en.wikipedia.org/wiki/Salt_(cryptography)</a>.
+En la práctica el cifrado MD5 solamente no es suficiente pues es vulnerable a ataques de diccionario.<br>
+Debería combinarse con sal <a href="https://es.wikipedia.org/wiki/Sal_(criptografía)">https://es.wikipedia.org/wiki/Sal_(criptografía)</a>.
 </td>
 </tr>
 </table>
@@ -4604,7 +4593,7 @@ For more info on Concurrency and Asynchronous Programming, see <a href="http://d
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-09 15:11:56 CEST
+Last updated 2016-04-10 23:03:29 CEST
 </div>
 </div>
 </body>

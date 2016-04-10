@@ -2479,51 +2479,50 @@ if $email ~~ / <varias-letras> <punto> <varias-letras> <arroba> <varias-letras-n
 ----
 
 Una regex con nombre se define de la siguiente forma: `my regex nombre-regex { definición de la regex }` +
-Para utilizar una regex, invocamos su nombre de esta forma: `<nombre-regex>`
+Para utilizar una regex, la invocamos con su nombre de esta forma: `<nombre-regex>`
 
 NOTA: En http://doc.perl6.org/language/regexes tienes más información sobre regex.
 
 == Módulos en Perl 6
-Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
-text manipulation, graphics, web, databases, network protocols etc.
+Perl 6 es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
+manipulación de texto, gráficos, web, bases de datos, protocolos de red, etc.
 
-Reusability is a very important concept whereby programmers don't have to reinvent the wheel each time they want to do a new task.
+La reutilización es un concepto muy importante para que los programadores no tengan que reinventar la rueda cada vez que quieran llevar a cabo una nueva tarea.
 
-Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
+Perl 6 permite la creación y redistribución de *módulos*. Cada módulo es un conjunto de funcionalidades empaquetadas que, una vez instalado, se puede reutilizar.
 
-_Panda_ is a module management tool that comes with Rakudo.
+_Panda_ es el gestor de módulos que incorpora Rakudo.
 
-To install a specific module, type the below command in your terminal:
+Para instalar un módulo concreto, introduce el siguiente comando en el terminal:
 
-`panda install "module name"`
+`panda install "nombre del módulo"`
 
-NOTE: The Perl 6 modules directory can be found on: http://modules.perl6.org/
+NOTA: Puedes encontrar el directorio de módulos de Perl 6 en: http://modules.perl6.org/
 
-=== Using Modules
-MD5 is a cryptographic hash function that produces a 128-bit hash value. +
-MD5 has a variety of applications of which encryption of passwords stored in a database.
-When a new user registers, their credentials are not stored as plain text but rather _hashed_.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
+=== Utilizando Módulos
+MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit. +
+MD5 tiene muchas aplicaciones, como el cifrado de contraseñas que se pueden alojar en una base de datos.
+Cuando se registra un nuevo usuario, sus credenciales no se guardan en texto plano, se guardan _cifradas_.
+La razón de esto es que si un atacante compromete la base de datos no pueda conocer las contraseñas.
+Supongamos que necesitas un script que genere el hash MD5 de una contraseña para después guardarlo en la base de datos.
 
-Lets say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
-
-Luckily there's a Perl 6 module that already implemented the MD5 algorithm. Lets install it: +
+Por suerte existe un módulo en Perl 6 que ya implementa el algoritmo MD5. Vamos a instalarlo: +
 `panda install Digest::MD5`
 
-Now run the below script:
+Ahora ejecutemos el siguiente script:
 [source,perl6]
 ----
 use Digest::MD5;
-my $password = "password123";
-my $hashed-password = Digest::MD5.new.md5_hex($password);
+my $contraseña = "contraseña123";
+my $contraseña-cifrada = Digest::MD5.new.md5_hex($contraseña);
 
-say $hashed-password;
+say $contraseña-cifrada;
 ----
-In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
-The `use` keyword loads the module for use in the script.
+Para utilizar la función `md5_hex()` que produce el cifrado necesitaremos antes cargar el módulo requerido. +
+La palabra clave `use` carga el módulo para después utilizarlo en el script.
 
-WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
-It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+WARNING: En la práctica el cifrado MD5 solamente no es suficiente pues es vulnerable a ataques de diccionario. +
+Debería combinarse con sal link:https://es.wikipedia.org/wiki/Sal_(criptografía)[https://es.wikipedia.org/wiki/Sal_(criptografía)].
 
 == Unicode
 
