@@ -2526,31 +2526,31 @@ Debería combinarse con sal link:https://es.wikipedia.org/wiki/Sal_(criptografí
 
 == Unicode
 
-Unicode is a standard for encoding and representing text, that caters for most writing systems in the world. +
-UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
+Unicode es un estándar para codificar y representar texto e incluye la mayoría de los sistemas de escritura del mundo. +
+UTF-8 es una codificación de caracteres que puede codificar todos los caracteres o números de código en Unicode.
 
-Characters are defined by a: +
-*Grapheme*: Visual representation. +
-*Code point*: A number assigned to the character.
+Los caracteres se definen con un: +
+*Grafema*: Representación visual. +
+*Número de código*: Un número asignado a un caracter.
 
-=== Using Unicode
+=== Utilizando Unicode
 
-.Lets look at how we can output characters using Unicode
+.Veamos cómo podemos visualizar caracteres mediante Unicode
 [source,perl6]
 ----
 say "a";
 say "\x0061";
 say "\c[LATIN SMALL LETTER A]";
 ----
-The above 3 lines showcase different ways of building a character:
+Las 3 líneas anteriores muestran formas distintas de construir un caracter:
 
-. Writing the character directly (grapheme)
+. Escribir el caracter directamente (grafema)
 
-. Using `\x` and the code point
+. Utilizar `\x` y el número de código
 
-. Using `\c` and the code point name
+. Utilizar `\c` y el nombre del número de código
 
-.Now lets output a smiley
+.Visualicemos ahora una sonrisa
 [source,perl6]
 ----
 say "☺";
@@ -2558,7 +2558,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
-.Another example combining two code points
+.Otro ejemplo combinando dos números de código
 [source,perl6]
 ----
 say "á";
@@ -2567,13 +2567,13 @@ say "\x0061\x0301";
 say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 ----
 
-The letter `á` can be written:
+La letra `á` puede escribirse:
 
-* using its unique code point `\x00e1`
+* utilizando su número de código único `\x00e1`
 
-* or as a combination of the code points of `a` and acute `\x0061\x0301`
+* o combinando sus números de código de `a` y la tilde `\x0061\x0301`
 
-.Some of the methods that can be used:
+.Algunos de los métodos que pueden utilizarse:
 [source,perl6]
 ----
 say "á".NFC;
@@ -2581,18 +2581,18 @@ say "á".NFD;
 say "á".uniname;
 ----
 
-.`Output`
+.`Salida`
 ----
 NFC:0x<00e1>
 NFD:0x<0061 0301>
 LATIN SMALL LETTER A WITH ACUTE
 ----
 
-`NFC` returns the unique code point. +
-`NFD` decomposes the character and return the code point of each part. +
-`uniname` returns the code point name.
+`NFC` devuelve el número de código único. +
+`NFD` descompone el caracter y devuelve el número de código de cada parte. +
+`uniname` devuelve el nombre del número de código.
 
-.Unicode letters can be used as identifiers:
+.Las letras Unicode pueden utilizarse como identificadores:
 [source,perl6]
 ----
 my $Δ = 1;
@@ -2600,72 +2600,72 @@ $Δ++;
 say $Δ;
 ----
 
-== Parallelism, Concurrency and Asynchrony
+== Paralelismo, Concurrencia y Asincronía
 
-=== Parallelism
-Under normal circumstances, all tasks in a program run sequentially. +
-This might not be a problem unless what you're trying to do is consuming a lot of time.
+=== Paralelismo
+En condiciones normales todas las tareas de un programa se ejecutan de forma secuencial. +
+Esto no suele ser un problema a menos que exista un retardo significativo.
 
-Naturally speaking Perl 6 has features that will enable you to run things in parallel. +
-At this stage, it is important to note that parallelism can mean one of two things:
+Perl 6 te permite hacer cosas en paralelo. +
+Llegados aquí, es importante saber que el paralelismo puede tener dos significados:
 
-* *Task Parallelism*: Two (or more) independent expressions running in parallel.
+* *Paralelismo de Tareas*: Dos (o más) expresiones independientes ejecutándose en paralelo.
 
-* *Data Parallelism*: A single expression iterating over a list of elements in parallel.
+* *Paralelismo de Datos*: Una única expresión iterando en una lista de elementos en paralelo.
 
-Lets begin with the latter.
+Comencemos con la última.
 
-==== Data Parallelism
+==== Paralelismo de Datos
 [source,perl6]
 ----
-my @array = (0..50000);                     #Array population
-my @result = @array.map({ is-prime $_ });   #call is-prime for each array element
-say now - INIT now;                         #Output the time it took for the script to complete
+my @array = (0..50000);                      #Creación del array
+my @resultado = @array.map({ is-prime $_ }); #Llama a is-prime por cada elemento del array
+say now - INIT now;                          #Visualiza el tiempo que toma el script hasta finalizar
 ----
 
-.Considering the above example:
-We are only doing one operation `@array.map({ is-prime $_ })` +
-The `is-prime` subroutine is being called for each array element sequentially: +
-`is-prime @array[0]` then `is-prime @array[1]` then `is-prime @array[2]` etc.
+.Consideremos el ejemplo anterior:
+Hacemos solo una operación `@array.map({ is-prime $_ })` +
+La subrutina `is-prime` es llamada por cada elemento del array de forma secuencial: +
+`is-prime @array[0]` después `is-prime @array[1]` después `is-prime @array[2]` etc.
 
-.Fortunately we can call `is-prime` on multiple array elements at the same time:
+.Afortunadamente podemos llamar a `is-prime` en múltiples elementos del array al mismo tiempo:
 [source,perl6]
 ----
-my @array = (0..50000);                         #Array population
-my @result = @array.race.map({ is-prime $_ });  #call is-prime for each array element
-say now - INIT now;                             #Output the time it took to complete
+my @array = (0..50000);                           #Creación del array
+my @resultado = @array.race.map({ is-prime $_ }); #Llama a is-prime por cada elemento del array
+say now - INIT now;                               #Visualiza el tiempo que toma el script hasta finalizar
 ----
 
-Notice the use of `race` in the expression.
-This method will enable parallel iteration of the array elements.
+Fíjate que la expresión utiliza `race`.
+Este método permite la iteración en paralelo de los elementos del array.
 
-After running both examples (with and without `race`), compare the time it took for both scripts to complete.
+Después de ejecutar ambos ejemplos (con y sin `race`), compara los tiempos consumidos de ambos scripts.
 
 [TIP]
 --
-`race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
+`race` no guarda el orden de los elementos. Si quieres respetar este orden, utiliza `hyper`.
 
 [source,perl6]
 .race
 ----
 my @array = (1..1000);
-my @result = @array.race.map( {$_ + 1} );
-@result>>.say;
+my @resultado = @array.race.map( {$_ + 1} );
+@resultado>>.say;
 ----
 
 [source,perl6]
 .hyper
 ----
 my @array = (1..1000);
-my @result = @array.hyper.map( {$_ + 1} );
-@result>>.say;
+my @resultado = @array.hyper.map( {$_ + 1} );
+@resultado>>.say;
 ----
 
-If you run both examples, you should notice that one is sorted and the other is not.
+Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el otro no.
 
 --
 
-==== Task Parallelism
+==== Paralelismo de Tareas
 
 [source,perl6]
 ----

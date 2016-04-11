@@ -597,12 +597,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_unicode">13. Unicode</a>
 <ul class="sectlevel2">
-<li><a href="#_using_unicode">13.1. Using Unicode</a></li>
+<li><a href="#_utilizando_unicode">13.1. Utilizando Unicode</a></li>
 </ul>
 </li>
-<li><a href="#_parallelism_concurrency_and_asynchrony">14. Parallelism, Concurrency and Asynchrony</a>
+<li><a href="#_paralelismo_concurrencia_y_asincronía">14. Paralelismo, Concurrencia y Asincronía</a>
 <ul class="sectlevel2">
-<li><a href="#_parallelism">14.1. Parallelism</a></li>
+<li><a href="#_paralelismo">14.1. Paralelismo</a></li>
 <li><a href="#_concurrency_and_asynchrony">14.2. Concurrency and Asynchrony</a></li>
 </ul>
 </li>
@@ -4292,18 +4292,18 @@ Debería combinarse con sal <a href="https://es.wikipedia.org/wiki/Sal_(criptogr
 <h2 id="_unicode">13. Unicode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Unicode is a standard for encoding and representing text, that caters for most writing systems in the world.<br>
-UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.</p>
+<p>Unicode es un estándar para codificar y representar texto e incluye la mayoría de los sistemas de escritura del mundo.<br>
+UTF-8 es una codificación de caracteres que puede codificar todos los caracteres o números de código en Unicode.</p>
 </div>
 <div class="paragraph">
-<p>Characters are defined by a:<br>
-<strong>Grapheme</strong>: Visual representation.<br>
-<strong>Code point</strong>: A number assigned to the character.</p>
+<p>Los caracteres se definen con un:<br>
+<strong>Grafema</strong>: Representación visual.<br>
+<strong>Número de código</strong>: Un número asignado a un caracter.</p>
 </div>
 <div class="sect2">
-<h3 id="_using_unicode">13.1. Using Unicode</h3>
+<h3 id="_utilizando_unicode">13.1. Utilizando Unicode</h3>
 <div class="listingblock">
-<div class="title">Lets look at how we can output characters using Unicode</div>
+<div class="title">Veamos cómo podemos visualizar caracteres mediante Unicode</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-nb">say</span> <span class="tok-s">&quot;a&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x0061&quot;</span>;
@@ -4311,23 +4311,23 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 </div>
 </div>
 <div class="paragraph">
-<p>The above 3 lines showcase different ways of building a character:</p>
+<p>Las 3 líneas anteriores muestran formas distintas de construir un caracter:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Writing the character directly (grapheme)</p>
+<p>Escribir el caracter directamente (grafema)</p>
 </li>
 <li>
-<p>Using <code>\x</code> and the code point</p>
+<p>Utilizar <code>\x</code> y el número de código</p>
 </li>
 <li>
-<p>Using <code>\c</code> and the code point name</p>
+<p>Utilizar <code>\c</code> y el nombre del número de código</p>
 </li>
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Now lets output a smiley</div>
+<div class="title">Visualicemos ahora una sonrisa</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-nb">say</span> <span class="tok-s">&quot;☺&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x263a&quot;</span>;
@@ -4335,7 +4335,7 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Another example combining two code points</div>
+<div class="title">Otro ejemplo combinando dos números de código</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x00e1&quot;</span>;
@@ -4344,20 +4344,20 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 </div>
 </div>
 <div class="paragraph">
-<p>The letter <code>á</code> can be written:</p>
+<p>La letra <code>á</code> puede escribirse:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>using its unique code point <code>\x00e1</code></p>
+<p>utilizando su número de código único <code>\x00e1</code></p>
 </li>
 <li>
-<p>or as a combination of the code points of <code>a</code> and acute <code>\x0061\x0301</code></p>
+<p>o combinando sus números de código de <code>a</code> y la tilde <code>\x0061\x0301</code></p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">Some of the methods that can be used:</div>
+<div class="title">Algunos de los métodos que pueden utilizarse:</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>.<span class="tok-n">NFC</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>.<span class="tok-n">NFD</span>;
@@ -4365,7 +4365,7 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 </div>
 </div>
 <div class="listingblock">
-<div class="title"><code>Output</code></div>
+<div class="title"><code>Salida</code></div>
 <div class="content">
 <pre>NFC:0x&lt;00e1&gt;
 NFD:0x&lt;0061 0301&gt;
@@ -4373,12 +4373,12 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>NFC</code> returns the unique code point.<br>
-<code>NFD</code> decomposes the character and return the code point of each part.<br>
-<code>uniname</code> returns the code point name.</p>
+<p><code>NFC</code> devuelve el número de código único.<br>
+<code>NFD</code> descompone el caracter y devuelve el número de código de cada parte.<br>
+<code>uniname</code> devuelve el nombre del número de código.</p>
 </div>
 <div class="listingblock">
-<div class="title">Unicode letters can be used as identifiers:</div>
+<div class="title">Las letras Unicode pueden utilizarse como identificadores:</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">$Δ</span> = <span class="tok-mi">1</span>;
 <span class="tok-nv">$Δ</span>++;
@@ -4389,60 +4389,60 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_parallelism_concurrency_and_asynchrony">14. Parallelism, Concurrency and Asynchrony</h2>
+<h2 id="_paralelismo_concurrencia_y_asincronía">14. Paralelismo, Concurrencia y Asincronía</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_parallelism">14.1. Parallelism</h3>
+<h3 id="_paralelismo">14.1. Paralelismo</h3>
 <div class="paragraph">
-<p>Under normal circumstances, all tasks in a program run sequentially.<br>
-This might not be a problem unless what you&#8217;re trying to do is consuming a lot of time.</p>
+<p>En condiciones normales todas las tareas de un programa se ejecutan de forma secuencial.<br>
+Esto no suele ser un problema a menos que exista un retardo significativo.</p>
 </div>
 <div class="paragraph">
-<p>Naturally speaking Perl 6 has features that will enable you to run things in parallel.<br>
-At this stage, it is important to note that parallelism can mean one of two things:</p>
+<p>Perl 6 te permite hacer cosas en paralelo.<br>
+Llegados aquí, es importante saber que el paralelismo puede tener dos significados:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Task Parallelism</strong>: Two (or more) independent expressions running in parallel.</p>
+<p><strong>Paralelismo de Tareas</strong>: Dos (o más) expresiones independientes ejecutándose en paralelo.</p>
 </li>
 <li>
-<p><strong>Data Parallelism</strong>: A single expression iterating over a list of elements in parallel.</p>
+<p><strong>Paralelismo de Datos</strong>: Una única expresión iterando en una lista de elementos en paralelo.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Lets begin with the latter.</p>
+<p>Comencemos con la última.</p>
 </div>
 <div class="sect3">
-<h4 id="_data_parallelism">14.1.1. Data Parallelism</h4>
+<h4 id="_paralelismo_de_datos">14.1.1. Paralelismo de Datos</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                     <span class="tok-c-Singleline">#Array population</span>
-<span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> });   <span class="tok-c-Singleline">#call is-prime for each array element</span>
-<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                         <span class="tok-c-Singleline">#Output the time it took for the script to complete</span></code></pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                      <span class="tok-c-Singleline">#Creación del array</span>
+<span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c-Singleline">#Llama a is-prime por cada elemento del array</span>
+<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                          <span class="tok-c-Singleline">#Visualiza el tiempo que toma el script hasta finalizar</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<div class="title">Considering the above example:</div>
-<p>We are only doing one operation <code>@array.map({ is-prime $_ })</code><br>
-The <code>is-prime</code> subroutine is being called for each array element sequentially:<br>
-<code>is-prime @array[0]</code> then <code>is-prime @array[1]</code> then <code>is-prime @array[2]</code> etc.</p>
+<div class="title">Consideremos el ejemplo anterior:</div>
+<p>Hacemos solo una operación <code>@array.map({ is-prime $_ })</code><br>
+La subrutina <code>is-prime</code> es llamada por cada elemento del array de forma secuencial:<br>
+<code>is-prime @array[0]</code> después <code>is-prime @array[1]</code> después <code>is-prime @array[2]</code> etc.</p>
 </div>
 <div class="listingblock">
-<div class="title">Fortunately we can call <code>is-prime</code> on multiple array elements at the same time:</div>
+<div class="title">Afortunadamente podemos llamar a <code>is-prime</code> en múltiples elementos del array al mismo tiempo:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                         <span class="tok-c-Singleline">#Array population</span>
-<span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> });  <span class="tok-c-Singleline">#call is-prime for each array element</span>
-<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                             <span class="tok-c-Singleline">#Output the time it took to complete</span></code></pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                           <span class="tok-c-Singleline">#Creación del array</span>
+<span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c-Singleline">#Llama a is-prime por cada elemento del array</span>
+<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                               <span class="tok-c-Singleline">#Visualiza el tiempo que toma el script hasta finalizar</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Notice the use of <code>race</code> in the expression.
-This method will enable parallel iteration of the array elements.</p>
+<p>Fíjate que la expresión utiliza <code>race</code>.
+Este método permite la iteración en paralelo de los elementos del array.</p>
 </div>
 <div class="paragraph">
-<p>After running both examples (with and without <code>race</code>), compare the time it took for both scripts to complete.</p>
+<p>Después de ejecutar ambos ejemplos (con y sin <code>race</code>), compara los tiempos consumidos de ambos scripts.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4452,26 +4452,26 @@ This method will enable parallel iteration of the array elements.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>race</code> will not preserve the order of elements. If you wish to do, so use <code>hyper</code> instead.</p>
+<p><code>race</code> no guarda el orden de los elementos. Si quieres respetar este orden, utiliza <code>hyper</code>.</p>
 </div>
 <div class="listingblock">
 <div class="title">race</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
-<span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
-<span class="tok-nv">@result</span>&gt;&gt;.<span class="tok-nb">say</span>;</code></pre>
+<span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
+<span class="tok-nv">@resultado</span>&gt;&gt;.<span class="tok-nb">say</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">hyper</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
-<span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">hyper</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
-<span class="tok-nv">@result</span>&gt;&gt;.<span class="tok-nb">say</span>;</code></pre>
+<span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">hyper</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
+<span class="tok-nv">@resultado</span>&gt;&gt;.<span class="tok-nb">say</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you run both examples, you should notice that one is sorted and the other is not.</p>
+<p>Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el otro no.</p>
 </div>
 </td>
 </tr>
@@ -4479,7 +4479,7 @@ This method will enable parallel iteration of the array elements.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_parallelism">14.1.2. Task Parallelism</h4>
+<h4 id="_paralelismo_de_tareas">14.1.2. Paralelismo de Tareas</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
@@ -4593,7 +4593,7 @@ For more info on Concurrency and Asynchronous Programming, see <a href="http://d
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-10 23:03:29 CEST
+Last updated 2016-04-11 22:47:46 CEST
 </div>
 </div>
 </body>
