@@ -603,10 +603,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_paralelismo_concurrencia_y_asincronía">14. Paralelismo, Concurrencia y Asincronía</a>
 <ul class="sectlevel2">
 <li><a href="#_paralelismo">14.1. Paralelismo</a></li>
-<li><a href="#_concurrency_and_asynchrony">14.2. Concurrency and Asynchrony</a></li>
+<li><a href="#_concurrencia_y_asincronía">14.2. Concurrencia y Asincronía</a></li>
 </ul>
 </li>
-<li><a href="#_the_community">15. The community</a></li>
+<li><a href="#_la_comunidad">15. La comunidad</a></li>
 </ul>
 </div>
 </div>
@@ -4485,65 +4485,65 @@ Este método permite la iteración en paralelo de los elementos del array.</p>
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
 
-<span class="tok-k">my</span> <span class="tok-nv">@result1</span> = <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} );
-<span class="tok-k">my</span> <span class="tok-nv">@result2</span> = <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} );
+<span class="tok-k">my</span> <span class="tok-nv">@resultado1</span> = <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} );
+<span class="tok-k">my</span> <span class="tok-nv">@resultado2</span> = <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} );
 
-<span class="tok-nb">say</span> <span class="tok-nv">@result1</span> == <span class="tok-nv">@result2</span>;
+<span class="tok-nb">say</span> <span class="tok-nv">@resultado1</span> == <span class="tok-nv">@resultado2</span>;
 
 <span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;</code></pre>
 </div>
 </div>
 <div class="olist arabic">
-<div class="title">Considering the above example:</div>
+<div class="title">Veamos el ejemplo anterior:</div>
 <ol class="arabic">
 <li>
-<p>We defined 2 arrays</p>
+<p>Definimos 2 arrays</p>
 </li>
 <li>
-<p>applied a different operation for each array and stored the results</p>
+<p>Realizamos una operación con cada array y guardamos los resultados</p>
 </li>
 <li>
-<p>and checked if both results are the same</p>
+<p>Y comprobamos si ambos resultados son iguales</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The script waits for <code>@array1.map( {is-prime($_ + 1)} )</code> to finish<br>
-and then evaluates <code>@array2.map( {is-prime($_ - 1)} )</code></p>
+<p>El script espera mientras realiza <code>@array1.map( {is-prime($_ + 1)} )</code> hasta finalizar<br>
+y después realiza <code>@array2.map( {is-prime($_ - 1)} )</code></p>
 </div>
 <div class="paragraph">
-<p>Both operations applied to each array do not depend on each other.</p>
+<p>Ambas operaciones realizadas en cada array son independientes.</p>
 </div>
 <div class="listingblock">
-<div class="title">Why not do both in parallel?</div>
+<div class="title">¿Por qué no hacer las dos en paralelo?</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
 
-<span class="tok-k">my</span> <span class="tok-nv">$promise1</span> = <span class="tok-n">start</span> <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
-<span class="tok-k">my</span> <span class="tok-nv">$promise2</span> = <span class="tok-n">start</span> <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>} );
+<span class="tok-k">my</span> <span class="tok-nv">$promesa1</span> = <span class="tok-n">start</span> <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
+<span class="tok-k">my</span> <span class="tok-nv">$promesa2</span> = <span class="tok-n">start</span> <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>} );
 
-<span class="tok-k">my</span> <span class="tok-nv">@result1</span> = <span class="tok-n">await</span> <span class="tok-nv">$promise1</span>;
-<span class="tok-k">my</span> <span class="tok-nv">@result2</span> = <span class="tok-n">await</span> <span class="tok-nv">$promise2</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@resultado1</span> = <span class="tok-n">await</span> <span class="tok-nv">$promesa1</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@resultado2</span> = <span class="tok-n">await</span> <span class="tok-nv">$promesa2</span>;
 
-<span class="tok-nb">say</span> <span class="tok-nv">@result1</span> == <span class="tok-nv">@result2</span>;
+<span class="tok-nb">say</span> <span class="tok-nv">@resultado1</span> == <span class="tok-nv">@resultado2</span>;
 
 <span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<div class="title">Explanation</div>
-<p>The <code>start</code> method evaluates the code and returns <strong>an object of type promise</strong> or shortly <strong>a promise</strong>.<br>
-If the code is evaluated correctly, the <em>promise</em> will be <strong>kept</strong>.<br>
-If the code throws an exception, the <em>promise</em> will be <strong>broken</strong>.</p>
+<div class="title">Explicación</div>
+<p>El método <code>start</code> evalúa el código y devuelve <strong>un objeto de tipo promesa</strong> o <strong>una promesa</strong> (promise).<br>
+Si el código se evalúa correctamente, la <em>promesa</em> se <strong>cumple</strong> (kept).<br>
+Si el código lanza una excepción, la <em>promesa</em> se <strong>rompe</strong> (broken).</p>
 </div>
 <div class="paragraph">
-<p>The <code>await</code> method waits for a <strong>promise</strong>.<br>
-If it&#8217;s <strong>kept</strong> it will get the returned values.<br>
-If it&#8217;s <strong>broken</strong> it will get the exception thrown.</p>
+<p>El método <code>await</code> espera a una <strong>promesa</strong>.<br>
+Si esta se <strong>cumple</strong> devuelve los valores.<br>
+Si esta se <strong>rompe</strong> devuelve la excepción.</p>
 </div>
 <div class="paragraph">
-<p>Check the time it took each script to complete.</p>
+<p>Comprueba lo que tarda cada script en completarse.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -4552,8 +4552,8 @@ If it&#8217;s <strong>broken</strong> it will get the exception thrown.</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower.<br>
-This is why, using <code>race</code>, <code>hyper</code>, <code>start</code> and <code>await</code> for fairly simple scripts can actually slow them down.
+El paralelismo siempre añade una sobrecarga multihilo. Si esta sobrecarga no se compensa aumentando la velocidad de cómputo, el script tardará más en completarse.<br>
+Debido a esto, el uso de <code>race</code>, <code>hyper</code>, <code>start</code> y <code>await</code> en scripts muy simples podría ralentizarlos.
 </td>
 </tr>
 </table>
@@ -4561,7 +4561,7 @@ This is why, using <code>race</code>, <code>hyper</code>, <code>start</code> and
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_and_asynchrony">14.2. Concurrency and Asynchrony</h3>
+<h3 id="_concurrencia_y_asincronía">14.2. Concurrencia y Asincronía</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4569,7 +4569,7 @@ This is why, using <code>race</code>, <code>hyper</code>, <code>start</code> and
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For more info on Concurrency and Asynchronous Programming, see <a href="http://doc.perl6.org/language/concurrency" class="bare">http://doc.perl6.org/language/concurrency</a>
+En <a href="http://doc.perl6.org/language/concurrency" class="bare">http://doc.perl6.org/language/concurrency</a> tienes más información sobre Concurrencia y Programación Asíncrona.
 </td>
 </tr>
 </table>
@@ -4578,22 +4578,22 @@ For more info on Concurrency and Asynchronous Programming, see <a href="http://d
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_community">15. The community</h2>
+<h2 id="_la_comunidad">15. La comunidad</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Much discussion happens on the <a href="irc://irc.freenode.net/#perl6">#perl6</a> IRC channel. This should be your go to place for any enquiry:<br>
+<p>El debate principal de Perl 6 sucede en el canal de IRC <a href="irc://irc.freenode.net/#perl6">#perl6</a>. Cualquier consulta al respecto puedes realizarla en:<br>
 <a href="http://perl6.org/community/irc" class="bare">http://perl6.org/community/irc</a></p>
 </div>
 <div class="paragraph">
-<p>Stay tuned by reading blog posts that focus on Perl 6:<br>
-<a href="http://pl6anet.org/" class="bare">http://pl6anet.org/</a> is a Perl 6 blog aggregator.</p>
+<p>Mantente al día en el siguiente agregador de blogs que tratan de Perl 6:<br>
+<a href="http://pl6anet.org/" class="bare">http://pl6anet.org/</a></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-11 22:47:46 CEST
+Last updated 2016-04-12 23:24:18 CEST
 </div>
 </div>
 </body>

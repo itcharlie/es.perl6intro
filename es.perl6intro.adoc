@@ -2672,65 +2672,65 @@ Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el 
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my @result1 = @array1.map( {is-prime($_ + 1)} );
-my @result2 = @array2.map( {is-prime($_ - 1)} );
+my @resultado1 = @array1.map( {is-prime($_ + 1)} );
+my @resultado2 = @array2.map( {is-prime($_ - 1)} );
 
-say @result1 == @result2;
+say @resultado1 == @resultado2;
 
 say now - INIT now;
 ----
 
-.Considering the above example:
+.Veamos el ejemplo anterior:
 
-. We defined 2 arrays
+. Definimos 2 arrays
 
-. applied a different operation for each array and stored the results
+. Realizamos una operación con cada array y guardamos los resultados
 
-. and checked if both results are the same
+. Y comprobamos si ambos resultados son iguales
 
-The script waits for `@array1.map( {is-prime($_ + 1)} )` to finish +
-and then evaluates `@array2.map( {is-prime($_ - 1)} )`
+El script espera mientras realiza `@array1.map( {is-prime($_ + 1)} )` hasta finalizar +
+y después realiza `@array2.map( {is-prime($_ - 1)} )`
 
-Both operations applied to each array do not depend on each other.
+Ambas operaciones realizadas en cada array son independientes.
 
-.Why not do both in parallel?
+.¿Por qué no hacer las dos en paralelo?
 [source,perl6]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my $promise1 = start @array1.map( {$_ + 1} );
-my $promise2 = start @array2.map( {$_ - 1} );
+my $promesa1 = start @array1.map( {$_ + 1} );
+my $promesa2 = start @array2.map( {$_ - 1} );
 
-my @result1 = await $promise1;
-my @result2 = await $promise2;
+my @resultado1 = await $promesa1;
+my @resultado2 = await $promesa2;
 
-say @result1 == @result2;
+say @resultado1 == @resultado2;
 
 say now - INIT now;
 ----
 
-.Explanation
-The `start` method evaluates the code and returns *an object of type promise* or shortly *a promise*. +
-If the code is evaluated correctly, the _promise_ will be *kept*. +
-If the code throws an exception, the _promise_ will be *broken*.
+.Explicación
+El método `start` evalúa el código y devuelve *un objeto de tipo promesa* o *una promesa* (promise). +
+Si el código se evalúa correctamente, la _promesa_ se *cumple* (kept). +
+Si el código lanza una excepción, la _promesa_ se *rompe* (broken).
 
-The `await` method waits for a *promise*. +
-If it's *kept* it will get the returned values. +
-If it's *broken* it will get the exception thrown.
+El método `await` espera a una *promesa*. +
+Si esta se *cumple* devuelve los valores. +
+Si esta se *rompe* devuelve la excepción.
 
-Check the time it took each script to complete.
+Comprueba lo que tarda cada script en completarse.
 
-WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
-This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
+WARNING: El paralelismo siempre añade una sobrecarga multihilo. Si esta sobrecarga no se compensa aumentando la velocidad de cómputo, el script tardará más en completarse. +
+Debido a esto, el uso de `race`, `hyper`, `start` y `await` en scripts muy simples podría ralentizarlos.
 
-=== Concurrency and Asynchrony
-NOTE: For more info on Concurrency and Asynchronous Programming, see http://doc.perl6.org/language/concurrency
+=== Concurrencia y Asincronía
+NOTE: En http://doc.perl6.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
 
-== The community
+== La comunidad
 
-Much discussion happens on the link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. This should be your go to place for any enquiry: +
+El debate principal de Perl 6 sucede en el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6]. Cualquier consulta al respecto puedes realizarla en: +
 http://perl6.org/community/irc
 
-Stay tuned by reading blog posts that focus on Perl 6: +
-http://pl6anet.org/ is a Perl 6 blog aggregator.
+Mantente al día en el siguiente agregador de blogs que tratan de Perl 6: +
+http://pl6anet.org/
