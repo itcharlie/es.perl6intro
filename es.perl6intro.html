@@ -652,6 +652,20 @@ Es conveniente que pruebes todos los ejemplos para entenderlos bien.</p>
 <p>Todas las sugerencias y comentarios son bienvenidos:
 <a href="mailto:naoum@hankache.com">naoum@hankache.com</a></p>
 </div>
+<div class="ulist">
+<div class="title">Traducciones</div>
+<ul>
+<li>
+<p>Francés: <a href="http://fr.perl6intro.com" class="bare">http://fr.perl6intro.com</a></p>
+</li>
+<li>
+<p>Alemán:  <a href="http://de.perl6intro.com" class="bare">http://de.perl6intro.com</a></p>
+</li>
+<li>
+<p>Español: <a href="http://es.perli6ntro.com" class="bare">http://es.perli6ntro.com</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -710,25 +724,36 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 <p>Instalación de Rakudo: En el terminal, introduce el siguiente comando <code>rakudobrew build moar</code></p>
 </li>
 <li>
-<p>Instalación de Panda: En el terminal, introduce el siguiente comando <code>rakudobrew build-panda</code></p>
+<p>Instalación de Panda: En el terminal, introduce el siguiente comando <code>rakudobrew build panda</code></p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
 <div class="title">OSX</div>
-<p>Sigue los mismos pasos de la instalación para Linux<br>
-O<br>
-Realiza la instalación con homebrew: <code>brew install rakudo-star</code></p>
+<p>Tienes tres opciones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sigue los mismos pasos de la instalación para Linux</p>
+</li>
+<li>
+<p>Realizar la instalación con homebrew: <code>brew install rakudo-star</code></p>
+</li>
+<li>
+<p>Descargar el último instalador (archivo con extensión .dmg) desde <a href="http://rakudo.org/download/star/" class="bare">http://rakudo.org/download/star/</a></p>
+</li>
+</ul>
 </div>
 <div class="olist arabic">
 <div class="title">Windows</div>
 <ol class="arabic">
 <li>
-<p>Descarga el instalador más reciente (.MSI) desde <a href="http://rakudo.org/downloads/star/" class="bare">http://rakudo.org/downloads/star/</a><br>
+<p>Descarga el instalador más reciente (.msi) desde <a href="http://rakudo.org/downloads/star/" class="bare">http://rakudo.org/downloads/star/</a><br>
 Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.</p>
 </li>
 <li>
-<p>Finalizada la instalación, agrega C:\rakudo\bin al PATH del sistema.</p>
+<p>Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.</p>
 </li>
 </ol>
 </div>
@@ -1231,11 +1256,27 @@ Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Hola Hola Hola</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>~~</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infijo</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Expresión regular</p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"></td>
+<td class="tableblock halign-center valign-middle" rowspan="5"><p class="tableblock"><code>~~</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="5"><p class="tableblock"><code>Infijo</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="5"><p class="tableblock">Expresión regular</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2 ~~ 2</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Verdadero</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2 ~~ Int</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Verdadero</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ "Perl 6"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Verdadero</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ Str</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Verdadero</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"iluminación" ~~ /ilumina/</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>｢ilumina｣</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>++</code></p></td>
@@ -1489,7 +1530,7 @@ soiD eD nauJ</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@animales</span> = [<span class="tok-s">&#39;camello&#39;</span>,<span class="tok-s">&#39;llama&#39;</span>,<span class="tok-s">&#39;búho&#39;</span>];
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@animales</span> = <span class="tok-s">&#39;camello&#39;</span>,<span class="tok-s">&#39;llama&#39;</span>,<span class="tok-s">&#39;búho&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@animales</span>;</code></pre>
 </div>
 </div>
@@ -1511,7 +1552,7 @@ La tilde <code>~</code> se utiliza para concatenar texto.
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@animales</span> = [<span class="tok-s">&#39;camello&#39;</span>,<span class="tok-s">&#39;vicuña&#39;</span>,<span class="tok-s">&#39;llama&#39;</span>];
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@animales</span> = <span class="tok-s">&#39;camello&#39;</span>,<span class="tok-s">&#39;vicuña&#39;</span>,<span class="tok-s">&#39;llama&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;El zoo tiene &quot;</span> ~ <span class="tok-nv">@animales</span>.<span class="tok-nb">elems</span> ~ <span class="tok-s">&quot; animales&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Los animales son: &quot;</span> ~ <span class="tok-nv">@animales</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;He conseguido un búho para el zoo&quot;</span>;
@@ -1615,6 +1656,9 @@ Con Perl 6, podemos definir arrays de varias dimensiones.</p>
 <p>Este array es de dos dimensiones.
 La primera dimensión puede tener un máximo de 3 valores y la segunda dimensión un máximo de 2 valores.</p>
 </div>
+<div class="paragraph">
+<p>Imagínalo como una tabla de 3x2.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];
@@ -1627,6 +1671,19 @@ La primera dimensión puede tener un máximo de 3 valores y la segunda dimensió
 <span class="tok-nb">say</span> <span class="tok-nv">@tbl</span></code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>[[1 x] [2 y] [3 z]]</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Representación visual del array:</div>
+<div class="content">
+<pre>[1 x]
+[2 y]
+[3 z]</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>NOTA: Consulta <a href="http://doc.perl6.org/type/Array" class="bare">http://doc.perl6.org/type/Array</a> para tener la referencia completa sobre Arrays.</p>
 </div>
@@ -1637,14 +1694,14 @@ La primera dimensión puede tener un máximo de 3 valores y la segunda dimensió
 <div class="listingblock">
 <div class="title">Un Hash es una colección de pares Clave/Valor.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;Londres&#39;</span>,<span class="tok-s">&#39;Alemania&#39;</span>,<span class="tok-s">&#39;Berlin&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;Londres&#39;</span>,<span class="tok-s">&#39;Alemania&#39;</span>,<span class="tok-s">&#39;Berlín&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Otra forma de insertar valores en un hash:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>;</code></pre>
 </div>
 </div>
@@ -1654,8 +1711,8 @@ La primera dimensión puede tener un máximo de 3 valores y la segunda dimensió
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>);
-<span class="tok-nv">%capitales</span>.<span class="tok-n">push:</span> (<span class="tok-n">Francia</span> =&gt; <span class="tok-s">&#39;Paris&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>);
+<span class="tok-nv">%capitales</span>.<span class="tok-n">push:</span> (<span class="tok-n">Francia</span> =&gt; <span class="tok-s">&#39;París&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">kv</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">keys</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">values</span>;
@@ -1663,12 +1720,12 @@ La primera dimensión puede tener un máximo de 3 valores y la segunda dimensió
 </div>
 </div>
 <div class="listingblock">
-<div class="title"><code>Output</code></div>
+<div class="title"><code>Salida</code></div>
 <div class="content">
-<pre>(Alemania Berlin Francia Paris UK Londres)
+<pre>(Alemania Berlín Francia París UK Londres)
 (Alemania Francia UK)
-(Berlin Paris Londres)
-La capital de Francia es: Paris</pre>
+(Berlín París Londres)
+La capital de Francia es: París</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1751,7 +1808,7 @@ Fíjate en el <code>Int</code> indicado antes de la variable.</p>
 <span class="tok-nb">say</span> <span class="tok-nv">@multilengua</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@multilengua</span>.<span class="tok-nb">WHAT</span>;
 
-<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>);
+<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">WHAT</span>;
 
@@ -2057,7 +2114,7 @@ Cannot assign to an immutable value</pre>
 <div class="sect2">
 <h3 id="_if">5.1. if</h3>
 <div class="paragraph">
-<p>El código se ejecuta solo si se cumple la condición.</p>
+<p>El código se ejecuta solo si se cumple la condición, o en otras palabras cuando la expresión se evalúa como <code>True</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2305,7 +2362,7 @@ Cannot assign to an immutable value</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Este código hace que el terminal espere la introducción de tu nombre para después darte la bienvenida.</p>
+<p>Este código hace que el terminal espere la introducción de tu nombre y pulses [Enter] para después darte la bienvenida.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2336,21 +2393,32 @@ Cannot assign to an immutable value</pre>
 <p><code>run</code> Ejecuta un comando externo sin la intervención del shell.</p>
 </li>
 <li>
-<p><code>shell</code> Ejecuta un comando desde el shell del sistema y tiene en cuenta todos sus caracteres especiales como tuberías, redirecciones, variables de entorno, sustitución de variables, etc.</p>
+<p><code>shell</code> Ejecuta un comando desde el shell del sistema y dependerá de la plataforma y la shell.
+Todos los caracteres especiales los interpreta la shell, como pueden ser las tuberías, redirecciones, sustitución de variables de entorno, etc.</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
+<div class="title">Ejecuta el siguiente script en Linux/OSX</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">$nombre</span> = <span class="tok-s">&#39;Neo&#39;</span>;
 <span class="tok-nb">run</span> <span class="tok-s">&#39;echo&#39;</span>, <span class="tok-s">&quot;Hola $nombre&quot;</span>;
 <span class="tok-n">shell</span> <span class="tok-s">&quot;ls&quot;</span>;</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Ejecuta lo siguiente en Windows</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-n">shell</span> <span class="tok-s">&quot;dir&quot;</span>;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p><code>echo</code> y <code>ls</code> son dos comandos típicos del shell.<br>
-<code>echo</code> visualiza texto en el terminal (equivale al <code>print</code> de Perl 6).<br>
-<code>ls</code> lista todos los archivos y carpetas del directorio actual.</p>
+<p><code>echo</code> y <code>ls</code> son palabras clave típicas de la shell de Linux:<br>
+<code>echo</code> visualiza texto en el terminal (es el equivalente a <code>print</code> en Perl 6)<br>
+<code>ls</code> muestra un listado de todos los archivos y carpetas del directorio actual</p>
+</div>
+<div class="paragraph">
+<p><code>dir</code> es el equivalente de <code>ls</code> en Windows.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2448,6 +2516,20 @@ Juanita 7</pre>
 <p><code>IO.e</code> comprueba si existe la carpeta/archivo.<br>
 <code>IO.f</code> comprueba si la ruta es un archivo.<br>
 <code>IO.d</code> comprueba si la ruta es una carpeta.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+en Windows puedes utilizar <code>/</code> o <code>\\</code> para separar carpetas anidadas<br>
+<code>C:\\rakudo\\bin</code><br>
+<code>C:/rakudo/bin</code><br>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>NOTA: En <a href="http://doc.perl6.org/type/IO" class="bare">http://doc.perl6.org/type/IO</a> tienes más información sobre E/S.</p>
@@ -2690,7 +2772,7 @@ El ejemplo anterior puede escribirse de la siguiente forma utilizando el <strong
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = &lt;<span class="tok-mi">7</span> <span class="tok-mi">8</span> <span class="tok-mi">9</span> <span class="tok-mi">0</span> <span class="tok-mi">1</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">3</span> <span class="tok-mi">5</span> <span class="tok-mi">6</span> <span class="tok-mi">7</span> <span class="tok-mi">8</span> <span class="tok-mi">9</span> &gt;;
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@final-array</span> = <span class="tok-nv">@array</span>.<span class="tok-n">unique</span>.<span class="tok-nb">sort</span>.<span class="tok-nb">reverse</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@final-array</span>;</code></pre>
 </div>
@@ -2707,7 +2789,7 @@ El ejemplo anterior puede escribirse de la siguiente forma utilizando el <strong
 <div class="listingblock">
 <div class="title">Alimentación hacia adelante</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6&gt;</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-nv">@array</span> ==&gt; <span class="tok-n">unique</span>()
        ==&gt; <span class="tok-nb">sort</span>()
        ==&gt; <span class="tok-nb">reverse</span>()
@@ -2730,7 +2812,7 @@ El ejemplo anterior puede escribirse de la siguiente forma utilizando el <strong
 <div class="listingblock">
 <div class="title">Alimentación hacia atrás</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6&gt;</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@final-array-v2</span> &lt;== <span class="tok-nb">reverse</span>()
                    &lt;== <span class="tok-nb">sort</span>()
                    &lt;== <span class="tok-n">unique</span>()
@@ -4520,11 +4602,11 @@ y después realiza <code>@array2.map( {is-prime($_ - 1)} )</code></p>
 <pre class="pygments highlight"><code data-lang="perl6"><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
 
-<span class="tok-k">my</span> <span class="tok-nv">$promesa1</span> = <span class="tok-n">start</span> <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
-<span class="tok-k">my</span> <span class="tok-nv">$promesa2</span> = <span class="tok-n">start</span> <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>} );
+<span class="tok-k">my</span> <span class="tok-nv">@promesa1</span> = <span class="tok-n">start</span> <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} );
+<span class="tok-k">my</span> <span class="tok-nv">@promesa2</span> = <span class="tok-n">start</span> <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} );
 
-<span class="tok-k">my</span> <span class="tok-nv">@resultado1</span> = <span class="tok-n">await</span> <span class="tok-nv">$promesa1</span>;
-<span class="tok-k">my</span> <span class="tok-nv">@resultado2</span> = <span class="tok-n">await</span> <span class="tok-nv">$promesa2</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@resultado1</span> = <span class="tok-n">await</span> <span class="tok-nv">@promesa1</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@resultado2</span> = <span class="tok-n">await</span> <span class="tok-nv">@promesa2</span>;
 
 <span class="tok-nb">say</span> <span class="tok-nv">@resultado1</span> == <span class="tok-nv">@resultado2</span>;
 
@@ -4593,7 +4675,7 @@ En <a href="http://doc.perl6.org/language/concurrency" class="bare">http://doc.p
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-12 23:24:18 CEST
+Last updated 2016-04-13 23:13:34 CEST
 </div>
 </div>
 </body>

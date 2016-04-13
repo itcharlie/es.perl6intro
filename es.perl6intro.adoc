@@ -35,6 +35,11 @@ Puedes colaborar en este documento en:
 Todas las sugerencias y comentarios son bienvenidos:
 naoum@hankache.com
 
+.Traducciones
+* Francés: http://fr.perl6intro.com
+* Alemán:  http://de.perl6intro.com
+* Español: http://es.perli6ntro.com
+
 :sectnums:
 == Introducción
 === Qué es Perl 6
@@ -59,17 +64,19 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 
 . Instalación de Rakudo: En el terminal, introduce el siguiente comando `rakudobrew build moar`
 
-. Instalación de Panda: En el terminal, introduce el siguiente comando `rakudobrew build-panda`
+. Instalación de Panda: En el terminal, introduce el siguiente comando `rakudobrew build panda`
 
 .OSX
-Sigue los mismos pasos de la instalación para Linux +
-O +
-Realiza la instalación con homebrew: `brew install rakudo-star`
+Tienes tres opciones:
+
+* Sigue los mismos pasos de la instalación para Linux
+* Realizar la instalación con homebrew: `brew install rakudo-star`
+* Descargar el último instalador (archivo con extensión .dmg) desde http://rakudo.org/download/star/
 
 .Windows
-. Descarga el instalador más reciente (.MSI) desde http://rakudo.org/downloads/star/ +
+. Descarga el instalador más reciente (.msi) desde http://rakudo.org/downloads/star/ +
 Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
-. Finalizada la instalación, agrega C:\rakudo\bin al PATH del sistema.
+. Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.
 
 .Docker
 . Consigue la imagen oficial de Docker `docker pull rakudo-star`
@@ -293,7 +300,15 @@ La siguiente tabla muestra los operadores más utilizados.
 
 <| "Hola " x 3  <| Hola Hola Hola
 
-| ~~ | Infijo | Expresión regular |   |
+.5+| ~~ .5+| Infijo .5+| Expresión regular | 2 ~~ 2  | Verdadero
+
+<| 2 ~~ Int <| Verdadero
+
+<| "Perl 6" ~~ "Perl 6" <| Verdadero
+
+<| "Perl 6" ~~ Str <| Verdadero
+
+<| "iluminación" ~~ /ilumina/ <| ｢ilumina｣
 
 .2+| ++ | Prefijo | Incremento | my $var = 2; ++$var;  | Incrementa la variable por 1 y devuelve `3` como resultado
 
@@ -426,7 +441,7 @@ Los Arrays son listas que contienen varios valores.
 
 [source,perl6]
 ----
-my @animales = ['camello','llama','búho'];
+my @animales = 'camello','llama','búho';
 say @animales;
 ----
 
@@ -437,7 +452,7 @@ TIP: La tilde `~` se utiliza para concatenar texto.
 [source,perl6]
 .`Script`
 ----
-my @animales = ['camello','vicuña','llama'];
+my @animales = 'camello','vicuña','llama';
 say "El zoo tiene " ~ @animales.elems ~ " animales";
 say "Los animales son: " ~ @animales;
 say "He conseguido un búho para el zoo";
@@ -518,6 +533,8 @@ my @tbl[3;2];
 Este array es de dos dimensiones.
 La primera dimensión puede tener un máximo de 3 valores y la segunda dimensión un máximo de 2 valores.
 
+Imagínalo como una tabla de 3x2.
+
 [source,perl6]
 ----
 my @tbl[3;2];
@@ -530,40 +547,51 @@ my @tbl[3;2];
 say @tbl
 ----
 
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Representación visual del array:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
 NOTA: Consulta http://doc.perl6.org/type/Array para tener la referencia completa sobre Arrays.
 
 === Hashes
 [source,perl6]
 .Un Hash es una colección de pares Clave/Valor.
 ----
-my %capitales = ('UK','Londres','Alemania','Berlin');
+my %capitales = ('UK','Londres','Alemania','Berlín');
 say %capitales;
 ----
 
 [source,perl6]
 .Otra forma de insertar valores en un hash:
 ----
-my %capitales = (UK => 'Londres', Alemania => 'Berlin');
+my %capitales = (UK => 'Londres', Alemania => 'Berlín');
 say %capitales;
 ----
 Algunos de los métodos aplicables a los hashes son:
 [source,perl6]
 .`Script`
 ----
-my %capitales = (UK => 'Londres', Alemania => 'Berlin');
-%capitales.push: (Francia => 'Paris');
+my %capitales = (UK => 'Londres', Alemania => 'Berlín');
+%capitales.push: (Francia => 'París');
 say %capitales.kv;
 say %capitales.keys;
 say %capitales.values;
 say "La capital de Francia es: " ~ %capitales<Francia>;
 ----
 
-.`Output`
+.`Salida`
 ----
-(Alemania Berlin Francia Paris UK Londres)
+(Alemania Berlín Francia París UK Londres)
 (Alemania Francia UK)
-(Berlin Paris Londres)
-La capital de Francia es: Paris
+(Berlín París Londres)
+La capital de Francia es: París
 ----
 
 .Explicación
@@ -624,7 +652,7 @@ my Str @multilengua = "Hello","Salut","Hallo","您好","안녕하세요","こん
 say @multilengua;
 say @multilengua.WHAT;
 
-my Str %capitales = (UK => 'London', Alemania => 'Berlin');
+my Str %capitales = (UK => 'London', Alemania => 'Berlín');
 say %capitales;
 say %capitales.WHAT;
 
@@ -833,7 +861,7 @@ Puedes hacer que una función se comporte como un mutante utilizando `.=` en lug
 Perl 6 tiene multitud de constructores de bucles y condiciones.
 
 === if
-El código se ejecuta solo si se cumple la condición.
+El código se ejecuta solo si se cumple la condición, o en otras palabras cuando la expresión se evalúa como `True`.
 
 [source,perl6]
 ----
@@ -1024,7 +1052,7 @@ $nombre=get;
 say "¿Que tal $nombre?, bienvenido a Perl 6";
 ----
 
-Este código hace que el terminal espere la introducción de tu nombre para después darte la bienvenida.
+Este código hace que el terminal espere la introducción de tu nombre y pulses [Enter] para después darte la bienvenida.
 
 ==== prompt
 `prompt` es una combinación entre `print` y `get`.
@@ -1043,17 +1071,27 @@ Podemos utilizar dos subrutinas para ejecutar comandos del shell:
 
 * `run` Ejecuta un comando externo sin la intervención del shell.
 
-* `shell` Ejecuta un comando desde el shell del sistema y tiene en cuenta todos sus caracteres especiales como tuberías, redirecciones, variables de entorno, sustitución de variables, etc.
+* `shell` Ejecuta un comando desde el shell del sistema y dependerá de la plataforma y la shell.
+Todos los caracteres especiales los interpreta la shell, como pueden ser las tuberías, redirecciones, sustitución de variables de entorno, etc.
 
 [source,perl6]
+.Ejecuta el siguiente script en Linux/OSX
 ----
 my $nombre = 'Neo';
 run 'echo', "Hola $nombre";
 shell "ls";
 ----
-`echo` y `ls` son dos comandos típicos del shell. +
-`echo` visualiza texto en el terminal (equivale al `print` de Perl 6). +
-`ls` lista todos los archivos y carpetas del directorio actual.
+
+[source,perl6]
+.Ejecuta lo siguiente en Windows
+----
+shell "dir";
+----
+`echo` y `ls` son palabras clave típicas de la shell de Linux: +
+`echo` visualiza texto en el terminal (es el equivalente a `print` en Perl 6) +
+`ls` muestra un listado de todos los archivos y carpetas del directorio actual
+
+`dir` es el equivalente de `ls` en Windows.
 
 
 === E/S de Archivos
@@ -1132,6 +1170,10 @@ Ejecuta el script.
 `IO.e` comprueba si existe la carpeta/archivo. +
 `IO.f` comprueba si la ruta es un archivo. +
 `IO.d` comprueba si la ruta es una carpeta.
+
+WARNING: en Windows puedes utilizar `/` o `\\` para separar carpetas anidadas +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
 
 NOTA: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
 
@@ -1301,7 +1343,7 @@ El ejemplo anterior puede escribirse de la siguiente forma utilizando el *encade
 
 [source,perl6]
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
@@ -1314,7 +1356,7 @@ El *operador de alimentación*, llamado _tubería_ en algunos lenguajes de progr
 [source,perl6]
 .Alimentación hacia adelante
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6>;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 @array ==> unique()
        ==> sort()
        ==> reverse()
@@ -1335,7 +1377,7 @@ Como ves, el flujo de las llamadas a los métodos es de arriba hacia abajo.
 [source,perl6]
 .Alimentación hacia atrás
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6>;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array-v2 <== reverse()
                    <== sort()
                    <== unique()
@@ -2699,11 +2741,11 @@ Ambas operaciones realizadas en cada array son independientes.
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my $promesa1 = start @array1.map( {$_ + 1} );
-my $promesa2 = start @array2.map( {$_ - 1} );
+my @promesa1 = start @array1.map( {is-prime($_ + 1)} );
+my @promesa2 = start @array2.map( {is-prime($_ - 1)} );
 
-my @resultado1 = await $promesa1;
-my @resultado2 = await $promesa2;
+my @resultado1 = await @promesa1;
+my @resultado2 = await @promesa2;
 
 say @resultado1 == @resultado2;
 
