@@ -340,7 +340,7 @@ La siguiente tabla muestra los operadores más utilizados.
 
 <| my $var; ?$var; <| Falso
 
-<| my $var = 7; ?$var; <| Verdadero
+<| my $var = 7; ?$var; <| True # un valor Verdadero
 
 | ! | Prefijo | Fuerza el operador a un valor booleano y devuelve la negación | !4 | Falso
 
@@ -354,7 +354,7 @@ La siguiente tabla muestra los operadores más utilizados.
 
 | ^ | Prefijo | Constructor de Series |  ^5  | Igual que 0..^5 Crea una serie de 0 a 4
 
-| ... | Infijo | Constructor de listas vago |  0...9999  |  devuelve los elementos si son solicitados
+| ... | Infijo | Constructor de listas perezozas |  0...9999  |  devuelve los elementos si son solicitados
 
 .2+| {vbar} .2+| Prefijo .2+| Aplanamiento | {vbar}(0..5)  | (0 1 2 3 4 5)
 
@@ -1434,7 +1434,7 @@ Podemos definir una lista perezosa utilizando el operador infijo `...` +
 Una lista perezosa tiene *elemento(s) inicial(es)*, un *generador* y un *punto final*.
 
 [source,perl6]
-.Lista perezonsa simple
+.Lista perezosa simple
 ----
 my $listaperezosa = (1 ... 10);
 say $listaperezosa;
